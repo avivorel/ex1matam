@@ -5,8 +5,8 @@
 #include <assert.h>
     int main() {
         AmountSet set = asCreate();
-        assert(asRegister(set, "Adam") == AS_SUCCESS);
-        assert(asRegister(set, "Betty") == AS_SUCCESS);
+        assert(asRegister(set, "Adams") == AS_SUCCESS);
+        assert(asRegister(set, "Bettys") == AS_SUCCESS);
         asRegister(set, "Bat");
         assert(asRegister(set, "Bat") == AS_ITEM_ALREADY_EXISTS );
         asRegister(set, "Ab");
