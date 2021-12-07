@@ -6,3 +6,27 @@
 
 #IncludeRegexTransform: 
 
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str.h
+stdio.h
+-
+stdbool.h
+-
+
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/mainfunc.c
+amount_set_str.h
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str.h
+stdlib.h
+-
+string.h
+-
+test_utilities.h
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/test_utilities.h
+assert.h
+-
+
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/test_utilities.h
+stdbool.h
+-
+stdio.h
+-
+

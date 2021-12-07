@@ -84,13 +84,7 @@
 		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str.h">
 			<Option target="ex1matam"/>
 		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str_main.c">
-			<Option target="ex1matam"/>
-		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str_tests.c">
-			<Option target="ex1matam"/>
-		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str_tests.h">
+		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/mainfunc.c">
 			<Option target="ex1matam"/>
 		</Unit>
 		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/CMakeLists.txt">

@@ -1,7 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ex1matam.dir/amount_set_str.c.o"
-  "CMakeFiles/ex1matam.dir/amount_set_str_main.c.o"
-  "CMakeFiles/ex1matam.dir/amount_set_str_tests.c.o"
+  "CMakeFiles/ex1matam.dir/mainfunc.c.o"
   "ex1matam"
   "ex1matam.pdb"
 )
