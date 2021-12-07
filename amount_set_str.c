@@ -201,8 +201,7 @@ char* asGetFirst(AmountSet set) {
     if (set == NULL || set->header == NULL ) return NULL;
     set->current_element = set->header;
     List header = set->header;
-    char *first_element = header->element;
-    return first_element;
+  return header-> element;
 }
 /* asGetNext : check if the set is null or the current element is undefiend
  checks if the next element is null ( we or in the end of the list )
@@ -215,8 +214,7 @@ char* asGetNext(AmountSet set)
     if(the_next->next == NULL) return NULL ;
     the_next = the_next->next;
     set->current_element = the_next;
-    char* nextElement = the_next->element;
-    return nextElement;
+    return the_next->element;
 }
 /*
  asGetSize :

@@ -153,29 +153,53 @@ amount_set_str.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str.c.s
 .PHONY : amount_set_str.c.s
 
-mainfunc.o: mainfunc.c.o
-.PHONY : mainfunc.o
+amount_set_str_main.o: amount_set_str_main.c.o
+.PHONY : amount_set_str_main.o
 
 # target to build an object file
-mainfunc.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/mainfunc.c.o
-.PHONY : mainfunc.c.o
+amount_set_str_main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_main.c.o
+.PHONY : amount_set_str_main.c.o
 
-mainfunc.i: mainfunc.c.i
-.PHONY : mainfunc.i
+amount_set_str_main.i: amount_set_str_main.c.i
+.PHONY : amount_set_str_main.i
 
 # target to preprocess a source file
-mainfunc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/mainfunc.c.i
-.PHONY : mainfunc.c.i
+amount_set_str_main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_main.c.i
+.PHONY : amount_set_str_main.c.i
 
-mainfunc.s: mainfunc.c.s
-.PHONY : mainfunc.s
+amount_set_str_main.s: amount_set_str_main.c.s
+.PHONY : amount_set_str_main.s
 
 # target to generate assembly for a file
-mainfunc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/mainfunc.c.s
-.PHONY : mainfunc.c.s
+amount_set_str_main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_main.c.s
+.PHONY : amount_set_str_main.c.s
+
+amount_set_str_tests.o: amount_set_str_tests.c.o
+.PHONY : amount_set_str_tests.o
+
+# target to build an object file
+amount_set_str_tests.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.o
+.PHONY : amount_set_str_tests.c.o
+
+amount_set_str_tests.i: amount_set_str_tests.c.i
+.PHONY : amount_set_str_tests.i
+
+# target to preprocess a source file
+amount_set_str_tests.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.i
+.PHONY : amount_set_str_tests.c.i
+
+amount_set_str_tests.s: amount_set_str_tests.c.s
+.PHONY : amount_set_str_tests.s
+
+# target to generate assembly for a file
+amount_set_str_tests.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.s
+.PHONY : amount_set_str_tests.c.s
 
 # Help Target
 help:
@@ -189,9 +213,12 @@ help:
 	@echo "... amount_set_str.o"
 	@echo "... amount_set_str.i"
 	@echo "... amount_set_str.s"
-	@echo "... mainfunc.o"
-	@echo "... mainfunc.i"
-	@echo "... mainfunc.s"
+	@echo "... amount_set_str_main.o"
+	@echo "... amount_set_str_main.i"
+	@echo "... amount_set_str_main.s"
+	@echo "... amount_set_str_tests.o"
+	@echo "... amount_set_str_tests.i"
+	@echo "... amount_set_str_tests.s"
 .PHONY : help
 
 

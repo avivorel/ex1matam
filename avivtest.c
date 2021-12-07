@@ -144,11 +144,12 @@ bool testGetFirst(){
     ASSERT_TEST(asRegister(set,"first")==AS_SUCCESS);
     ASSERT_TEST(asRegister(set,"second")==AS_SUCCESS);
     ASSERT_TEST(asRegister(set,"third")==AS_SUCCESS);
-    ASSERT_TEST(asGetFirst(set) == first);
+    ASSERT_TEST(strcmp (asGetFirst(set),first)==0);
     ASSERT_TEST(asDelete(set,"first") == AS_SUCCESS);
-    ASSERT_TEST(asGetFirst(set) == second);
+    ASSERT_TEST(strcmp (asGetFirst(set),second)==0);
     ASSERT_TEST(asDelete(set,"second") == AS_SUCCESS);
-    ASSERT_TEST(asGetFirst(set) == third);
+    ASSERT_TEST(strcmp (asGetFirst(set),third)==0);
+
     asDestroy(set);
     return true ;
 }
