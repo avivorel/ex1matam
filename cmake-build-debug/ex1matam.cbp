@@ -93,6 +93,12 @@
 		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set_str_tests.h">
 			<Option target="ex1matam"/>
 		</Unit>
+		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c">
+			<Option target="ex1matam"/>
+		</Unit>
+		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.h">
+			<Option target="ex1matam"/>
+		</Unit>
 		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -61,7 +61,7 @@ typedef void (*FreeASElement)(ASElement);
  *     0 if they're equal;
  *     A negative integer if the second element is greater.
  */
-typedef int (*CompareASElements)(ASElement, ASElement);
+typedef int (*CompareASElements)(ASElement , ASElement);
 
 /**
  * asCreate: Allocates a new empty amount set.

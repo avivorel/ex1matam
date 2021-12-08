@@ -201,6 +201,30 @@ amount_set_str_tests.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.s
 .PHONY : amount_set_str_tests.c.s
 
+matamikya.o: matamikya.c.o
+.PHONY : matamikya.o
+
+# target to build an object file
+matamikya.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.o
+.PHONY : matamikya.c.o
+
+matamikya.i: matamikya.c.i
+.PHONY : matamikya.i
+
+# target to preprocess a source file
+matamikya.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.i
+.PHONY : matamikya.c.i
+
+matamikya.s: matamikya.c.s
+.PHONY : matamikya.s
+
+# target to generate assembly for a file
+matamikya.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.s
+.PHONY : matamikya.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,6 +243,9 @@ help:
 	@echo "... amount_set_str_tests.o"
 	@echo "... amount_set_str_tests.i"
 	@echo "... amount_set_str_tests.s"
+	@echo "... matamikya.o"
+	@echo "... matamikya.i"
+	@echo "... matamikya.s"
 .PHONY : help
 
 
