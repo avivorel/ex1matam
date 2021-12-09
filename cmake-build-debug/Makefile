@@ -129,101 +129,29 @@ ex1matam/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/build
 .PHONY : ex1matam/fast
 
-amount_set_str.o: amount_set_str.c.o
-.PHONY : amount_set_str.o
+Orders.o: Orders.c.o
+.PHONY : Orders.o
 
 # target to build an object file
-amount_set_str.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str.c.o
-.PHONY : amount_set_str.c.o
+Orders.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/Orders.c.o
+.PHONY : Orders.c.o
 
-amount_set_str.i: amount_set_str.c.i
-.PHONY : amount_set_str.i
-
-# target to preprocess a source file
-amount_set_str.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str.c.i
-.PHONY : amount_set_str.c.i
-
-amount_set_str.s: amount_set_str.c.s
-.PHONY : amount_set_str.s
-
-# target to generate assembly for a file
-amount_set_str.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str.c.s
-.PHONY : amount_set_str.c.s
-
-amount_set_str_main.o: amount_set_str_main.c.o
-.PHONY : amount_set_str_main.o
-
-# target to build an object file
-amount_set_str_main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_main.c.o
-.PHONY : amount_set_str_main.c.o
-
-amount_set_str_main.i: amount_set_str_main.c.i
-.PHONY : amount_set_str_main.i
+Orders.i: Orders.c.i
+.PHONY : Orders.i
 
 # target to preprocess a source file
-amount_set_str_main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_main.c.i
-.PHONY : amount_set_str_main.c.i
+Orders.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/Orders.c.i
+.PHONY : Orders.c.i
 
-amount_set_str_main.s: amount_set_str_main.c.s
-.PHONY : amount_set_str_main.s
-
-# target to generate assembly for a file
-amount_set_str_main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_main.c.s
-.PHONY : amount_set_str_main.c.s
-
-amount_set_str_tests.o: amount_set_str_tests.c.o
-.PHONY : amount_set_str_tests.o
-
-# target to build an object file
-amount_set_str_tests.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.o
-.PHONY : amount_set_str_tests.c.o
-
-amount_set_str_tests.i: amount_set_str_tests.c.i
-.PHONY : amount_set_str_tests.i
-
-# target to preprocess a source file
-amount_set_str_tests.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.i
-.PHONY : amount_set_str_tests.c.i
-
-amount_set_str_tests.s: amount_set_str_tests.c.s
-.PHONY : amount_set_str_tests.s
+Orders.s: Orders.c.s
+.PHONY : Orders.s
 
 # target to generate assembly for a file
-amount_set_str_tests.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/amount_set_str_tests.c.s
-.PHONY : amount_set_str_tests.c.s
-
-matamikya.o: matamikya.c.o
-.PHONY : matamikya.o
-
-# target to build an object file
-matamikya.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.o
-.PHONY : matamikya.c.o
-
-matamikya.i: matamikya.c.i
-.PHONY : matamikya.i
-
-# target to preprocess a source file
-matamikya.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.i
-.PHONY : matamikya.c.i
-
-matamikya.s: matamikya.c.s
-.PHONY : matamikya.s
-
-# target to generate assembly for a file
-matamikya.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.s
-.PHONY : matamikya.c.s
+Orders.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/Orders.c.s
+.PHONY : Orders.c.s
 
 # Help Target
 help:
@@ -234,18 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ex1matam"
-	@echo "... amount_set_str.o"
-	@echo "... amount_set_str.i"
-	@echo "... amount_set_str.s"
-	@echo "... amount_set_str_main.o"
-	@echo "... amount_set_str_main.i"
-	@echo "... amount_set_str_main.s"
-	@echo "... amount_set_str_tests.o"
-	@echo "... amount_set_str_tests.i"
-	@echo "... amount_set_str_tests.s"
-	@echo "... matamikya.o"
-	@echo "... matamikya.i"
-	@echo "... matamikya.s"
+	@echo "... Orders.o"
+	@echo "... Orders.i"
+	@echo "... Orders.s"
 .PHONY : help
 
 

@@ -8,7 +8,7 @@
 
 struct Inventory_t {
     AmountSet header;
-    AmountSet current_element;
+    AmountSet current_element; // you gets the current element in your set by the defination of the amount set ...
 } ;
 typedef struct Product_t{
     unsigned int id;
@@ -27,6 +27,7 @@ void destroyInventory(Inventory inventory){
     if(inventory == NULL) return;
     asDestroy(inventory->header);
 }
+
 
 AmountSetResult registerInventory(Inventory inventory, const unsigned int id, const char* name, const double amount, MatamikyaAmountType amountType, MtmGetProductPrice productPrice){
     if(inventory == NULL || (void *) id == NULL || name == NULL)

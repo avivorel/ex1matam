@@ -209,7 +209,7 @@ unsigned int mtmCreateNewOrder(Matamikya matamikya);
  *    error code is returned if one of the parameters is invalid, and MATAMIKYA_SUCCESS
  *    is returned if all the parameters are valid.
  */
-MatamikyaResult mtmChangeProductAmountInOrder(Matamikya, const unsigned int orderId,
+MatamikyaResult mtmChangeProductAmountInOrder(Matamikya matamikya, const unsigned int orderId,
                                      const unsigned int productId, const double amount);
 
 /**
