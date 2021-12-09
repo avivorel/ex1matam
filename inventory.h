@@ -61,7 +61,7 @@ AmountSetResult registerInventory();
  *      AS_NULL_ARGUMENT - if a NULL argument was passed.
 */
 
-AmountSetResult changeInventoryAmount(Inventory inventory, const unsigned int id, void *const amount);
+AmountSetResult changeInventoryAmount(Inventory inventory, const unsigned int id, const double amount);
 
 /**
  * removeProduct: removes a given product from the inventory.

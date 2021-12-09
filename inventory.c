@@ -47,3 +47,18 @@ AmountSetResult registerInventory(Inventory inventory, const unsigned int id, co
         return AS_ITEM_ALREADY_EXISTS;
     }
 }
+
+AmountSetResult changeInventoryAmount(Inventory inventory, const unsigned int id, const double amount){
+    if(inventory == NULL) return AS_NULL_ARGUMENT;
+    if(amount == 0) return AS_SUCCESS;
+    Product tmp_product = malloc(sizeof(*tmp_product));
+    if(tmp_product!= NULL){
+        tmp_product->id = id;
+    }
+    if(asContains(inventory->header,(ASElement)tmp_product)){
+        asChangeAmount(inventory->header,(ASElement)tmp_product,amount);
+        return AS_SUCCESS;
+    }
+    return AS_ITEM_DOES_NOT_EXIST;
+}
+
