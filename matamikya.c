@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <stdbool.h>
+#include "MtmProductData.h"
 
 struct  Matamikya_t {
     AmountSet inventory;
@@ -11,19 +13,12 @@ struct  Matamikya_t {
     MtmFreeData freeData;
     MtmGetProductPrice prodPrice;
 };
-struct MtmProductData {
-    const unsigned int id;
-    const char *name;
-    const double amount_per_type;
-    const MatamikyaAmountType amountType;
-};
-int inventoryCompareFunc(ASElement element1 , ASElement element2);
-
+int (*inventoryCompareFunc)(ASElement element1 , ASElement element2);
 Matamikya matamikyaCreate()
 {
     Matamikya warehouse = malloc(sizeof(*warehouse));
     if(warehouse==NULL) return NULL;
-    AmountSet inventory= asCreate(warehouse->copyData, warehouse->freeData, inventoryCompareFunc);
+    AmountSet inventory= asCreate(warehouse->copyData, warehouse->freeData,inventoryCompareFunc);
     if(inventory==NULL)
     {
         free(warehouse);
@@ -32,6 +27,11 @@ Matamikya matamikyaCreate()
     warehouse->inventory=inventory;
     MtmProductData data=malloc(sizeof(*data));
     asRegister(warehouse->inventory,(ASElement)data);
-
     return warehouse;
 };
+
+void matamikyaDestroy(Matamikya matamikya){
+    if(matamikya == NULL) return;
+    // need to add the actual free func
+}
+
