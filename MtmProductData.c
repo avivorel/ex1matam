@@ -15,7 +15,8 @@ struct MtmProductData {
 
 MtmProductData createProductData(){
     MtmProductData data = malloc(sizeof(*data));
-
+    if(data != NULL){
+    }
 }
 
 void destroyProductData(MtmProductData data){

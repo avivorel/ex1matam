@@ -47,7 +47,7 @@ void destroyInventory(Inventory inventory);
  *     AS_ITEM_ALREADY_EXISTS - if an equal element already exists in the inventory.
  *     AS_SUCCESS - if the element was added successfully.
  */
-AmountSetResult registerInventory(Inventory inventory, MtmProductData product);
+AmountSetResult registerInventory();
 
 /**
 * changeInventoryAmount: changes the amount of a certain product in the inventory.

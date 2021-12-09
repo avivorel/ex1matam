@@ -4,11 +4,19 @@
 #include "matamikya.h"
 #include "inventory.h"
 #include <stdlib.h>
+#include "MtmProductData.h"
 
 struct Inventory_t {
     AmountSet header;
     AmountSet current_element;
 } ;
+typedef struct Product_t{
+    unsigned int id;
+    char* name;
+    double amount;
+    MatamikyaAmountType amountType;
+    MtmGetProductPrice productPrice;
+} *Product;
 
 Inventory createInventory(){
     Inventory inventory = malloc(sizeof(*inventory));
@@ -16,26 +24,26 @@ Inventory createInventory(){
 }
 
 void destroyInventory(Inventory inventory){
-    if(inventory == NULL || inventory->header == NULL) return;
+    if(inventory == NULL) return;
     asDestroy(inventory->header);
 }
 
-AmountSetResult registerInventory(Inventory inventory, MtmProductData product){
-    if(inventory == NULL || product == NULL) return AS_NULL_ARGUMENT;
-    if(asContains(inventory->header,product) == false){
-        asRegister(inventory->header, product);
+AmountSetResult registerInventory(Inventory inventory, const unsigned int id, const char* name, const double amount, MatamikyaAmountType amountType, MtmGetProductPrice productPrice){
+    if(inventory == NULL || (void *) id == NULL || name == NULL)
+        return AS_NULL_ARGUMENT;
+    AmountSet header = inventory->header;
+    Product product = malloc(sizeof(*product));
+    if(product!=NULL){
+        product->id = id;
+    }
+    if(!asContains(header,(ASElement)product)){
+        product->name = name;
+        product->amount = amount;
+        product->amountType = amountType;
+        product->productPrice = productPrice;
         return AS_SUCCESS;
     }
-    else {
+    else{
         return AS_ITEM_ALREADY_EXISTS;
-    }
-}
-
-AmountSetResult changeInventoryAmount(Inventory inventory, const unsigned int id, void *const amount){
-    if(inventory == NULL || (void *) id == NULL || amount == NULL) return AS_NULL_ARGUMENT;
-    MtmProductData product = malloc(sizeof(*product));
-    product
-    while(inventory->header != NULL){
-        if(inventory->header->)
     }
 }
