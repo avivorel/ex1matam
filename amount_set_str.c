@@ -25,7 +25,7 @@ struct AmountSet_t {
  function that create a set and fill him with null argument for the pointer and 0 for the amount
  malloc allocation checked in the function and returns NULL if the allocation failed
  return pointer to the struct */
-static char* strtCopy (const char* element)
+static char* strCopy (const char* element)
 {
     int len_of_new_element=(int)strlen(element)+1;
     char* element_copy= malloc(len_of_new_element);
@@ -50,7 +50,7 @@ List listCopy(List list_element)
     if(list_element == NULL) return NULL ;
     List copy= malloc(sizeof(*copy));
     if(copy==NULL) return NULL;
-    char* element_copy= strtCopy(list_element->element);
+    char* element_copy= strCopy(list_element->element);
     if(element_copy==NULL){
         free(copy);
         return NULL;
