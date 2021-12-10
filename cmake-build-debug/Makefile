@@ -129,29 +129,29 @@ ex1matam/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/build
 .PHONY : ex1matam/fast
 
-Orders.o: Orders.c.o
-.PHONY : Orders.o
+matamikye2.o: matamikye2.c.o
+.PHONY : matamikye2.o
 
 # target to build an object file
-Orders.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/Orders.c.o
-.PHONY : Orders.c.o
+matamikye2.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikye2.c.o
+.PHONY : matamikye2.c.o
 
-Orders.i: Orders.c.i
-.PHONY : Orders.i
+matamikye2.i: matamikye2.c.i
+.PHONY : matamikye2.i
 
 # target to preprocess a source file
-Orders.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/Orders.c.i
-.PHONY : Orders.c.i
+matamikye2.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikye2.c.i
+.PHONY : matamikye2.c.i
 
-Orders.s: Orders.c.s
-.PHONY : Orders.s
+matamikye2.s: matamikye2.c.s
+.PHONY : matamikye2.s
 
 # target to generate assembly for a file
-Orders.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/Orders.c.s
-.PHONY : Orders.c.s
+matamikye2.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikye2.c.s
+.PHONY : matamikye2.c.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ex1matam"
-	@echo "... Orders.o"
-	@echo "... Orders.i"
-	@echo "... Orders.s"
+	@echo "... matamikye2.o"
+	@echo "... matamikye2.i"
+	@echo "... matamikye2.s"
 .PHONY : help
 
 

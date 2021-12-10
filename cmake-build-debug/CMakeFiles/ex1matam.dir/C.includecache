@@ -6,33 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/Orders.c
-stdio.h
--
-stdbool.h
--
-amount_set.h
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set.h
-stdlib.h
--
-set.h
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/set.h
-Orders.h
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/Orders.h
-
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/Orders.h
-stdio.h
--
-stdbool.h
--
-
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set.h
-stdio.h
--
-stdbool.h
--
-
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/set.h
-stdbool.h
--
-
