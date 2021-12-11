@@ -5,50 +5,89 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include <stdbool.h>
 #include <math.h>
 #define POSITIVE 1
 #define NEGATIVE -1
 #define EQUAL 0
-#define LEGAL_REMMANT 0.001
-#define HALF_AMOUNT 0.5
+#define INTEGER_LIMIT 0.001
+#define UPPER_HALF_INTEGER_LIMIT 0.501
+#define LOWER_HALF_INTEGER_LIMIT 0.499
+
 
 
 struct  Matamikya_t {
-    AmountSet Warehouse;
-    Set Orders ;
+    AmountSet warehouse;
+    Set orders ;
 };
 
 typedef struct ProductData_t {
     unsigned int Id ;
     char* Name ;
-    MtmProductData  CustomData;
-    MatamikyaAmountType AmountType ;
-    MtmCopyData ProductCopy;
-    MtmFreeData ProductFree;
-    MtmGetProductPrice ProductGetPrice;
+    MtmProductData  custom_data;
+    MatamikyaAmountType amount_type ;
+    MtmCopyData productCopyFunction;
+    MtmFreeData productFreeFunction;
+    MtmGetProductPrice getProductPriceFunc;
 }
 *ProductData;
 
 typedef struct OrderProductData_t {
-    unsigned int OrderId;
-    AmountSet OrderData;
+    unsigned int order_id;
+    AmountSet order_data;
 }
 *OrderProductData;
 
-static char* strCopy (const char* element)
+/* Static function used in matamikya */
+
+/* strCopy
+ * copy a string return NULL if not success and the string either , using a dynamic allocation
+ * */
+
+static char* strCopy (const char* element) // used in createdProductData , copyProductData
 {
-    int len_of_new_element=(int)strlen(element)+1;
-    char* element_copy= malloc(len_of_new_element);
-    if(element_copy==NULL) return NULL;
-    for(int i=0 ; i<len_of_new_element ; i++)
-    {
-        element_copy[i]=(element)[i];
-    }
+    size_t len_of_new_element=(strlen(element))+1;
+    char* element_copy= malloc(sizeof(*element_copy)*len_of_new_element);
+   element_copy=strcpy(element_copy,element);
     return element_copy ;
 }
+/* checkValidName : 
+ * Check if the name is valid by the criterion of first letter starts with 0-9 or a-z or A-Z and the string not empty  *
+  return true if the name is valid and false either . */
+static bool checkValidName (const char* name) // used in mtmNewProduct
+{
+    if (((name[0] >= 'a' && name[0] <='z' ) || (name[0] >= 'A' && name[0] <='Z' ) || (name[0] >= '0' && name[0] <='9' )) || strcmp(name,"")==0 ) return true;
+    return false ;
+}
+/* checkAmountType
+ * check if the amount is valid .
+ * if its integer amount the amount can be between (int-1).99 to int.001
+ * if its half integer amount the amount can be between (int-1).99 to int.001 or int.499 to int.501
+ * */
+static bool checkAmountType (const double amount ,const MatamikyaAmountType amountType )
+{
+    double amount_diff;
+    double rounded_amount= round(amount);
+    if(amount >= rounded_amount) amount_diff = amount - rounded_amount;
+    else if(amount<rounded_amount) amount_diff=rounded_amount - amount;
+    if (amountType == MATAMIKYA_INTEGER_AMOUNT && !(amount_diff <= INTEGER_LIMIT && amount_diff >= EQUAL))
+        return false;
+    if (amountType == MATAMIKYA_HALF_INTEGER_AMOUNT &&
+        ( !(amount_diff <= INTEGER_LIMIT && amount_diff >= EQUAL) || (amount_diff >= LOWER_HALF_INTEGER_LIMIT && amount_diff<=UPPER_HALF_INTEGER_LIMIT)) )
+        return false;
+    return true ;
+}
+static ASElement getWarehouseProduct (Matamikya matamikya , const unsigned int Id)
+{
+    ASElement found = (asGetFirst(matamikya->warehouse));
+    while( (*(ProductData)found).Id == Id || found == NULL )
+    {
+        asGetNext(found)  ;
+    }
+    return found ;
+}
 
-ProductData createProduct (const unsigned int id,
+/* Functions for ADT Product Data */
+ProductData createProductData (const unsigned int id,
                            const char *name,
                            const MatamikyaAmountType amountType,
                            const MtmProductData customData,
@@ -57,73 +96,110 @@ ProductData createProduct (const unsigned int id,
                            MtmGetProductPrice prodPrice)
 
 {
+    if(name==NULL || customData==NULL || copyData==NULL || freeData==NULL || prodPrice == NULL ) return NULL;
     ProductData product = malloc(sizeof(*product));
     if(product == NULL ) return NULL ;
     product->Id = id;
-    product -> Name = strCopy(name);
+    product->Name= strCopy(name);
     if(product->Name == NULL )
     {
         free(product) ;
         return NULL ;
     }
-    product->CustomData = copyData(customData) ;
-    if(product->CustomData == NULL)
+    product->custom_data = copyData(customData) ;
+    if(product->custom_data == NULL)
     {
         free(product->Name);
         free(product);
         return NULL ;
     }
-    product ->AmountType = amountType ;
-    product->ProductCopy = copyData;
-    product->ProductFree = freeData;
-    product-> ProductGetPrice = prodPrice ;
+    product ->amount_type = amountType ;
+    product->productCopyFunction = copyData;
+    product->productFreeFunction = freeData;
+    product-> getProductPriceFunc = prodPrice ;
     return product;
 }
 
-ProductData CopyData(ProductData element)
+ProductData copyProductData(ProductData element)
 {
     if(element == NULL ) return NULL;
     ProductData new_element = malloc(sizeof(*new_element));
     if(new_element==NULL) return NULL;
-    new_element -> Id = (*(ProductData)element).Id;
-    new_element->Name = strCopy((*(ProductData)element).Name);
+    new_element -> Id = element->Id;
+    new_element->Name = strCopy(element->Name);
     if(new_element->Name==NULL) {
         free(new_element);
         return NULL ;
     }
-    new_element -> CustomData = ((*(ProductData)element).ProductCopy((*(ProductData)element).CustomData));
-    if(new_element->CustomData==NULL) {
+    new_element -> custom_data = (element->productCopyFunction(element->custom_data));
+    if(new_element->custom_data == NULL) {
         free(new_element->Name);
         free(new_element);
         return NULL;
     }
-    new_element -> AmountType = (*element).AmountType;
-    new_element -> ProductCopy = (*element).ProductCopy;
-    new_element -> ProductFree = (*element).ProductFree;
-    new_element -> ProductGetPrice = (*element).ProductGetPrice;
+    new_element -> amount_type = element->amount_type;
+    new_element -> productCopyFunction = element->productCopyFunction;
+    new_element -> productFreeFunction = element->productFreeFunction;
+    new_element -> getProductPriceFunc = element->getProductPriceFunc;
     return new_element ;
 }
-ProductData DestroyData(ProductData element)
+void destroyProductData(ProductData element)
 {
-    if(element==NULL) return NULL ;
-    if(element->CustomData != NULL ) element->ProductFree((element->CustomData));
+    if(element==NULL) return ;
+    if(element->custom_data != NULL ) element->productFreeFunction((element->custom_data));
     if( element->Name != NULL ) free (element->Name);
     free(element);
 }
+int compareProductData(ProductData element1 , ProductData element2)
+{
+if(element1==NULL)
+{
+    if(element2==NULL) return EQUAL;
+   if(element2->Name == NULL) return EQUAL;
+   return NEGATIVE;
+    }
+    if(element2==NULL)
+    {
+        if(element1->Name == NULL ) return EQUAL;
+        return POSITIVE;
+    }
+    unsigned int Id1= element1->Id;
+    unsigned int Id2= element2->Id;
+    if(Id1>Id2)  return POSITIVE;
+    if(Id1<Id2)  return NEGATIVE;
+    return EQUAL ;
+}
 
-ASElement copyProductData (ASElement element)
+
+/*End Of Functions for ADT Product Data */
+
+/* Function for using the AmountSet ADT - ASElement points to ProductData */
+
+ASElement copyProductDataToASElement (ASElement element)
 {
     if(element==NULL) return NULL ;
-    ProductData new_element = CopyData((ProductData)element);
+    ProductData new_element = copyProductData((ProductData) element);
     if((ASElement)new_element == NULL ) return NULL ;
     return (ASElement)new_element ;
 }
-void freeProductData (ASElement element)
+void freeProductDataToASElement (ASElement element)
 {
-    DestroyData((ProductData)element);
+    destroyProductData((ProductData) element);
 }
 
-int ComapreProducts(ASElement element1 , ASElement element2)
+int compareProductDataToASElement(ASElement element1 , ASElement element2)
+{
+int result = compareProductData((ProductData) element1, (ProductData) element2);
+return result;
+}
+
+/* End of Function for using the AmountSet ADT - ASElement points to ProductData */
+
+
+
+/* Code Before we make the Product Data ADT
+ *
+ * int compareProductDataToASElement(ASElement element1 , ASElement element2)
 {
     if (element1==NULL && element2 != NULL ) return -1;
     else if( (element1!=NULL && element2 == NULL ) ) return 1;
@@ -133,9 +209,8 @@ int ComapreProducts(ASElement element1 , ASElement element2)
     if(Id1>Id2)  return POSITIVE;
     if(Id1<Id2)  return NEGATIVE;
     return EQUAL ;
-}
+    }
 
-/*
   ASElement copyProductData (ASElement element)
 {
     if(element == NULL ) return NULL;
@@ -147,21 +222,21 @@ int ComapreProducts(ASElement element1 , ASElement element2)
         free(new_element);
         return NULL ;
     }
-    new_element -> CustomData = ((*(ProductData)element).ProductCopy((*(ProductData)element).CustomData));
-    if(new_element->CustomData==NULL) {
+    new_element -> custom_data = ((*(ProductData)element).productCopyFunction((*(ProductData)element).custom_data));
+    if(new_element->custom_data==NULL) {
         free(new_element->Name);
         free(new_element);
         return NULL;
     }
-    new_element -> AmountType = (*(ProductData)element).AmountType;
-    new_element -> ProductCopy = (*(ProductData)element).ProductCopy;
-    new_element -> ProductFree = (*(ProductData)element).ProductFree;
-    new_element -> ProductGetPrice = (*(ProductData)element).ProductGetPrice;
+    new_element -> amount_type = (*(ProductData)element).amount_type;
+    new_element -> productCopyFunction = (*(ProductData)element).productCopyFunction;
+    new_element -> productFreeFunction = (*(ProductData)element).productFreeFunction;
+    new_element -> getProductPriceFunc = (*(ProductData)element).getProductPriceFunc;
     return new_element ;
 }
-void freeProductData (ASElement element) {
+void freeProductDataToASElement (ASElement element) {
     if (element == NULL) return;
-    (*(ProductData) element).ProductFree((*(ProductData) element).CustomData);
+    (*(ProductData) element).productFreeFunction((*(ProductData) element).custom_data);
     free((*(ProductData) element).Name);
     free(element);
 }
@@ -173,82 +248,66 @@ Matamikya matamikyaCreate()
     Matamikya matamikya = malloc(sizeof(*matamikya))   ;
     if(matamikya==NULL)
     return NULL ;
-    matamikya->Warehouse= asCreate(copyProductData,freeProductData,ComapreProducts);
-    if(matamikya->Warehouse==NULL)
-    {
+    AmountSet warehouse = asCreate(copyProductDataToASElement, freeProductDataToASElement,compareProductDataToASElement);
+    if(warehouse == NULL ){
         free(matamikya);
         return NULL ;
     }
-    // Set Orders Creation
+    matamikya->warehouse = warehouse;
+    // Set orders Creation
     return matamikya;
 }
 void matamikyaDestroy(Matamikya matamikya)
 {
-    asDestroy(matamikya->Warehouse);
-    /* Destory to Orders */
+    asDestroy(matamikya->warehouse);
+    /* Destroy to orders */
     free(matamikya);
 }
-static bool checkName (const char* name)
-{
-    if (((name[0] >= 'a' && name[0] <='z' ) || (name[0] >= 'A' && name[0] <='Z' ) || (name[0] >= '0' && name[0] <='9' )) || strcmp(name,"")==0 ) return true;
-    return false ;
-}
-static bool checkAmount (const double amount ,const MatamikyaAmountType amountType )
-{
-    double rounded_amount= round(amount);
-    double amount_diff = rounded_amount-amount;
-    if(amount_diff < 0 ) amount_diff = (amount_diff)*NEGATIVE;
-    if (amountType == MATAMIKYA_INTEGER_AMOUNT && !(amount_diff == LEGAL_REMMANT || amount_diff == EQUAL))
-        return false;
-    if (amountType == MATAMIKYA_HALF_INTEGER_AMOUNT &&
-        !(amount_diff == LEGAL_REMMANT || amount_diff == EQUAL || amount_diff == LEGAL_REMMANT+HALF_AMOUNT || amount_diff==HALF_AMOUNT))
-        return false;
-    if(amount<0) return false;
-    return true ;
-}
-static ASElement elementSearch (Matamikya matamikya , const unsigned int Id)
-{
- ASElement found = asGetFirst(matamikya);
- while( (*(ProductData)found).Id != Id || found == NULL )
- {
-     asGetNext(matamikya)  ;
- }
- return found ;
-}
+
 MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const char *name,
                               const double amount, const MatamikyaAmountType amountType,
                               const MtmProductData customData , MtmCopyData copyData,
                               MtmFreeData freeData, MtmGetProductPrice prodPrice)
 {
-    if(matamikya == NULL || name == NULL || customData == NULL || copyData == NULL || freeData == NULL || prodPrice == NULL ) return MATAMIKYA_NULL_ARGUMENT;
-    if ( !checkName(name) ) return MATAMIKYA_INVALID_NAME;
-    if(!checkAmount(amount,amountType)) return MATAMIKYA_INVALID_AMOUNT;
-    ProductData newData = createProduct(id,name,amountType,customData,copyData,freeData,prodPrice);
-    if(newData==NULL) return MATAMIKYA_OUT_OF_MEMORY;
-    AmountSetResult registerResult = asRegister(matamikya->Warehouse,(ASElement)newData);
+    if(matamikya == NULL || matamikya->warehouse==NULL || name==NULL || customData==NULL || copyData==NULL || freeData==NULL || prodPrice == NULL  ) return MATAMIKYA_NULL_ARGUMENT;
+    if ( !checkValidName(name) ) return MATAMIKYA_INVALID_NAME;
+    if(!checkAmountType(amount,amountType)) return MATAMIKYA_INVALID_AMOUNT;
+    ProductData new_data  ;
+    if ( ( new_data = createProductData(id, name, amountType, customData, copyData, freeData, prodPrice) )== NULL ) return MATAMIKYA_OUT_OF_MEMORY;
+    AmountSetResult registerResult = asRegister(matamikya->warehouse, (ASElement)new_data);
     if(registerResult==AS_OUT_OF_MEMORY)
     {
-        DestroyData(newData);
+        destroyProductData(new_data);
         return MATAMIKYA_OUT_OF_MEMORY;
     }
-    if(registerResult==AS_ITEM_ALREADY_EXISTS ) {
-
+    if(registerResult==AS_ITEM_ALREADY_EXISTS )
+    {
+        destroyProductData(new_data);
         return MATAMIKYA_PRODUCT_ALREADY_EXIST;
     }
     if(registerResult==AS_SUCCESS)
     {
-        ASElement found = elementSearch(matamikya , id);
-    AmountSetResult amount_result = asChangeAmount(matamikya->Warehouse, found ,amount);
-    if(amount_result == AS_SUCCESS) {
-        DestroyData(newData);
-        return MATAMIKYA_SUCCESS;
-    }
-    else {
-          DestroyData(newData);
-        asDelete(matamikya->Warehouse, found) ;
+        ASElement found = getWarehouseProduct(matamikya, id);
+    AmountSetResult amount_result = asChangeAmount(matamikya->warehouse, found , amount);
+    if(amount_result == AS_INSUFFICIENT_AMOUNT) {
+        destroyProductData(new_data);
+        asDelete(matamikya->warehouse, found) ;
         return MATAMIKYA_INSUFFICIENT_AMOUNT;
     }
+
+    if(amount_result == AS_NULL_ARGUMENT) {
+        destroyProductData(new_data);
+        asDelete(matamikya->warehouse, found) ;
+        return MATAMIKYA_OUT_OF_MEMORY;
+    }
+    assert(amount_result==AS_ITEM_DOES_NOT_EXIST);
     }
 
+    destroyProductData(new_data);
+    return MATAMIKYA_SUCCESS;
+}
 
+int main()
+{
+    return 0;
 }

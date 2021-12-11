@@ -66,27 +66,27 @@ include CMakeFiles/ex1matam.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ex1matam.dir/flags.make
 
-CMakeFiles/ex1matam.dir/matamikye2.c.o: CMakeFiles/ex1matam.dir/flags.make
-CMakeFiles/ex1matam.dir/matamikye2.c.o: ../matamikye2.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1matam.dir/matamikye2.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikye2.c.o -c "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikye2.c"
+CMakeFiles/ex1matam.dir/matamikya.c.o: CMakeFiles/ex1matam.dir/flags.make
+CMakeFiles/ex1matam.dir/matamikya.c.o: ../matamikya.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1matam.dir/matamikya.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikya.c.o -c "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c"
 
-CMakeFiles/ex1matam.dir/matamikye2.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1matam.dir/matamikye2.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikye2.c" > CMakeFiles/ex1matam.dir/matamikye2.c.i
+CMakeFiles/ex1matam.dir/matamikya.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1matam.dir/matamikya.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c" > CMakeFiles/ex1matam.dir/matamikya.c.i
 
-CMakeFiles/ex1matam.dir/matamikye2.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1matam.dir/matamikye2.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikye2.c" -o CMakeFiles/ex1matam.dir/matamikye2.c.s
+CMakeFiles/ex1matam.dir/matamikya.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1matam.dir/matamikya.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c" -o CMakeFiles/ex1matam.dir/matamikya.c.s
 
 # Object files for target ex1matam
 ex1matam_OBJECTS = \
-"CMakeFiles/ex1matam.dir/matamikye2.c.o"
+"CMakeFiles/ex1matam.dir/matamikya.c.o"
 
 # External object files for target ex1matam
 ex1matam_EXTERNAL_OBJECTS =
 
-ex1matam: CMakeFiles/ex1matam.dir/matamikye2.c.o
+ex1matam: CMakeFiles/ex1matam.dir/matamikya.c.o
 ex1matam: CMakeFiles/ex1matam.dir/build.make
 ex1matam: CMakeFiles/ex1matam.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ex1matam"

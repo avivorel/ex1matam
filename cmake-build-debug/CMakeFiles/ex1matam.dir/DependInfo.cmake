@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikye2.c" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles/ex1matam.dir/matamikye2.c.o"
+  "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles/ex1matam.dir/matamikya.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

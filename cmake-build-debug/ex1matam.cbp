@@ -81,7 +81,10 @@
 		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set.h">
 			<Option target="ex1matam"/>
 		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikye2.c">
+		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c">
+			<Option target="ex1matam"/>
+		</Unit>
+		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.h">
 			<Option target="ex1matam"/>
 		</Unit>
 		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/set.h">

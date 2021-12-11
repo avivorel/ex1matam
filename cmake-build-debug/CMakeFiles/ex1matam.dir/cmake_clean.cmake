@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ex1matam.dir/matamikye2.c.o"
+  "CMakeFiles/ex1matam.dir/matamikya.c.o"
   "ex1matam"
   "ex1matam.pdb"
 )

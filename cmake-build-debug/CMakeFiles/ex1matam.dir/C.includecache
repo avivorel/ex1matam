@@ -12,17 +12,7 @@ stdio.h
 stdbool.h
 -
 
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.h
-stdio.h
--
-stdbool.h
--
-
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya_print.h
-stdio.h
--
-
-/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikye2.c
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c
 amount_set.h
 /Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set.h
 matamikya.h
@@ -37,9 +27,17 @@ string.h
 -
 assert.h
 -
+math.h
+-
+
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.h
+stdio.h
+-
 stdbool.h
 -
-math.h
+
+/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya_print.h
+stdio.h
 -
 
 /Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/set.h
