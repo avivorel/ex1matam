@@ -79,7 +79,7 @@ static bool checkAmountType (const double amount ,const MatamikyaAmountType amou
 static ASElement getWarehouseProduct (Matamikya matamikya , const unsigned int Id)
 {
     ASElement found = (asGetFirst(matamikya->warehouse));
-    while( (*(ProductData)found).Id == Id || found == NULL )
+    while( (*(ProductData)found).Id != Id )
     {
         asGetNext(found)  ;
     }
@@ -306,7 +306,30 @@ MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const 
     destroyProductData(new_data);
     return MATAMIKYA_SUCCESS;
 }
+MatamikyaResult mtmChangeProductAmount(Matamikya matamikya, const unsigned int id, const double amount)
+{
+   if ( matamikya==NULL || matamikya->warehouse) return MATAMIKYA_NULL_ARGUMENT;
+    ASElement found = getWarehouseProduct(matamikya,id);
+    if (found == NULL) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    MatamikyaAmountType product_type = (*(ProductData)found).amount_type;
+    if(!checkAmountType(amount,product_type)) return MATAMIKYA_INVALID_AMOUNT;
+   AmountSetResult changing_result = asChangeAmount(matamikya->warehouse,found,amount);
+   if(changing_result==AS_NULL_ARGUMENT) return MATAMIKYA_NULL_ARGUMENT;
+   if(changing_result==AS_ITEM_DOES_NOT_EXIST) return MATAMIKYA_PRODUCT_NOT_EXIST;
+   if(changing_result==AS_INSUFFICIENT_AMOUNT) return MATAMIKYA_INSUFFICIENT_AMOUNT;
+   return MATAMIKYA_SUCCESS;
+}
 
+MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id)
+{
+    if(matamikya==NULL  || matamikya->warehouse==NULL) return MATAMIKYA_NULL_ARGUMENT;
+    ASElement found = getWarehouseProduct(matamikya,id);
+    if (found == NULL ) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    AmountSetResult clear_result = asDelete(matamikya->warehouse,found);
+    if(clear_result == AS_NULL_ARGUMENT ) return MATAMIKYA_NULL_ARGUMENT;
+    if(clear_result == AS_ITEM_DOES_NOT_EXIST ) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    return MATAMIKYA_SUCCESS;
+}
 int main()
 {
     return 0;

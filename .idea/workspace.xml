@@ -15,27 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87d280fd-1ae7-4c3c-a6da-f3074f2a693d" name="Changes" comment="יעחחינח">
-      <change afterPath="$PROJECT_DIR$/expected_best_selling.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/expected_inventory.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/expected_no_selling.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/expected_order.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libas.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libmtm.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/matamikya_main.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/matamikya_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/matamikya_tests.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ex1matam.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ex1matam.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ex1matam.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matamikya.c" beforeDir="false" afterPath="$PROJECT_DIR$/matamikya.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +92,7 @@
       <workItem from="1639140901425" duration="4856000" />
       <workItem from="1639149514335" duration="14431000" />
       <workItem from="1639214915425" duration="13522000" />
-      <workItem from="1639233002263" duration="1000" />
+      <workItem from="1639233002263" duration="3462000" />
     </task>
     <task id="LOCAL‎00001" summary="יעחחינח">
       <created>1638892906100</created>
@@ -161,7 +142,13 @@
       <option name="presentableId" value="LOCAL‎00008" />
       <updated>1639165148855</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎00009" summary="יעחחינח">
+      <created>1639233234209</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1639233234209</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
