@@ -55,7 +55,7 @@ static char* strCopy (const char* element) // used in createdProductData , copyP
   return true if the name is valid and false either . */
 static bool checkValidName (const char* name) // used in mtmNewProduct
 {
-    if (((name[0] >= 'a' && name[0] <='z' ) || (name[0] >= 'A' && name[0] <='Z' ) || (name[0] >= '0' && name[0] <='9' )) || strcmp(name,"")==0 ) return true;
+    if (((name[0] >= 'a' && name[0] <='z' ) || (name[0] >= 'A' && name[0] <='Z' ) || (name[0] >= '0' && name[0] <='9' )) || !strcmp(name,"") ) return true;
     return false ;
 }
 /* checkAmountType
@@ -79,7 +79,7 @@ static bool checkAmountType (const double amount ,const MatamikyaAmountType amou
 static ASElement getWarehouseProduct (Matamikya matamikya , const unsigned int Id)
 {
     ASElement found = (asGetFirst(matamikya->warehouse));
-    while( (*(ProductData)found).Id != Id )
+    while( (*(ProductData)found).Id != Id && found != NULL )
     {
         asGetNext(found)  ;
     }
@@ -87,6 +87,7 @@ static ASElement getWarehouseProduct (Matamikya matamikya , const unsigned int I
 }
 
 /* Functions for ADT Product Data */
+
 ProductData createProductData (const unsigned int id,
                            const char *name,
                            const MatamikyaAmountType amountType,
@@ -196,6 +197,91 @@ return result;
 /* End of Function for using the AmountSet ADT - ASElement points to ProductData */
 
 
+Matamikya matamikyaCreate()
+{
+
+    Matamikya matamikya = malloc(sizeof(*matamikya))   ;
+    if(matamikya==NULL)
+    return NULL ;
+    AmountSet warehouse = asCreate(copyProductDataToASElement, freeProductDataToASElement,compareProductDataToASElement);
+    if(warehouse == NULL ){
+        free(matamikya);
+        return NULL ;
+    }
+    matamikya->warehouse = warehouse;
+    // Set orders Creation
+    return matamikya;
+}
+void matamikyaDestroy(Matamikya matamikya)
+{
+    asDestroy(matamikya->warehouse);
+    /* Destroy to orders */
+    free(matamikya);
+}
+
+MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const char *name,
+                              const double amount, const MatamikyaAmountType amountType,
+                              const MtmProductData customData , MtmCopyData copyData,
+                              MtmFreeData freeData, MtmGetProductPrice prodPrice)
+{
+    if(matamikya == NULL || matamikya->warehouse==NULL || name==NULL || customData==NULL || copyData==NULL || freeData==NULL || prodPrice == NULL  ) return MATAMIKYA_NULL_ARGUMENT;
+    if ( !checkValidName(name) ) return MATAMIKYA_INVALID_NAME;
+    if(!checkAmountType(amount,amountType)) return MATAMIKYA_INVALID_AMOUNT;
+    ProductData new_data  ;
+    if ( ( new_data = createProductData(id, name, amountType, customData, copyData, freeData, prodPrice) )== NULL ) return MATAMIKYA_OUT_OF_MEMORY;
+    AmountSetResult registerResult = asRegister(matamikya->warehouse, (ASElement)new_data);
+    if(registerResult==AS_OUT_OF_MEMORY)
+    {
+        destroyProductData(new_data);
+        return MATAMIKYA_OUT_OF_MEMORY;
+    }
+    if(registerResult==AS_ITEM_ALREADY_EXISTS )
+    {
+        destroyProductData(new_data);
+        return MATAMIKYA_PRODUCT_ALREADY_EXIST;
+    }
+    if(registerResult==AS_SUCCESS)
+    {
+        destroyProductData(new_data);
+        ASElement found = getWarehouseProduct(matamikya, id);
+    AmountSetResult amount_result = asChangeAmount(matamikya->warehouse, found , amount);
+    if(amount_result == AS_INSUFFICIENT_AMOUNT) {
+        asDelete(matamikya->warehouse, found) ;
+        return MATAMIKYA_INSUFFICIENT_AMOUNT;
+    }
+
+    if(amount_result == AS_NULL_ARGUMENT) {
+        asDelete(matamikya->warehouse, found) ;
+        return MATAMIKYA_OUT_OF_MEMORY;
+    }
+    assert(amount_result==AS_ITEM_DOES_NOT_EXIST);
+    }
+    return MATAMIKYA_SUCCESS;
+}
+MatamikyaResult mtmChangeProductAmount(Matamikya matamikya, const unsigned int id, const double amount)
+{
+   if ( matamikya==NULL || matamikya->warehouse) return MATAMIKYA_NULL_ARGUMENT;
+    ASElement found = getWarehouseProduct(matamikya,id);
+    if (found == NULL) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    MatamikyaAmountType product_type = (*(ProductData)found).amount_type;
+    if(!checkAmountType(amount,product_type)) return MATAMIKYA_INVALID_AMOUNT;
+   AmountSetResult changing_result = asChangeAmount(matamikya->warehouse,found,amount);
+   if(changing_result==AS_NULL_ARGUMENT) return MATAMIKYA_NULL_ARGUMENT;
+   if(changing_result==AS_ITEM_DOES_NOT_EXIST) return MATAMIKYA_PRODUCT_NOT_EXIST;
+   if(changing_result==AS_INSUFFICIENT_AMOUNT) return MATAMIKYA_INSUFFICIENT_AMOUNT;
+   return MATAMIKYA_SUCCESS;
+}
+
+MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id)
+{
+    if(matamikya==NULL  || matamikya->warehouse==NULL) return MATAMIKYA_NULL_ARGUMENT;
+    ASElement found = getWarehouseProduct(matamikya,id);
+    if (found == NULL ) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    AmountSetResult clear_result = asDelete(matamikya->warehouse,found);
+    if(clear_result == AS_NULL_ARGUMENT ) return MATAMIKYA_NULL_ARGUMENT;
+    if(clear_result == AS_ITEM_DOES_NOT_EXIST ) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    return MATAMIKYA_SUCCESS;
+}
 
 /* Code Before we make the Product Data ADT
  *
@@ -242,95 +328,3 @@ void freeProductDataToASElement (ASElement element) {
 }
 */
 
-Matamikya matamikyaCreate()
-{
-
-    Matamikya matamikya = malloc(sizeof(*matamikya))   ;
-    if(matamikya==NULL)
-    return NULL ;
-    AmountSet warehouse = asCreate(copyProductDataToASElement, freeProductDataToASElement,compareProductDataToASElement);
-    if(warehouse == NULL ){
-        free(matamikya);
-        return NULL ;
-    }
-    matamikya->warehouse = warehouse;
-    // Set orders Creation
-    return matamikya;
-}
-void matamikyaDestroy(Matamikya matamikya)
-{
-    asDestroy(matamikya->warehouse);
-    /* Destroy to orders */
-    free(matamikya);
-}
-
-MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const char *name,
-                              const double amount, const MatamikyaAmountType amountType,
-                              const MtmProductData customData , MtmCopyData copyData,
-                              MtmFreeData freeData, MtmGetProductPrice prodPrice)
-{
-    if(matamikya == NULL || matamikya->warehouse==NULL || name==NULL || customData==NULL || copyData==NULL || freeData==NULL || prodPrice == NULL  ) return MATAMIKYA_NULL_ARGUMENT;
-    if ( !checkValidName(name) ) return MATAMIKYA_INVALID_NAME;
-    if(!checkAmountType(amount,amountType)) return MATAMIKYA_INVALID_AMOUNT;
-    ProductData new_data  ;
-    if ( ( new_data = createProductData(id, name, amountType, customData, copyData, freeData, prodPrice) )== NULL ) return MATAMIKYA_OUT_OF_MEMORY;
-    AmountSetResult registerResult = asRegister(matamikya->warehouse, (ASElement)new_data);
-    if(registerResult==AS_OUT_OF_MEMORY)
-    {
-        destroyProductData(new_data);
-        return MATAMIKYA_OUT_OF_MEMORY;
-    }
-    if(registerResult==AS_ITEM_ALREADY_EXISTS )
-    {
-        destroyProductData(new_data);
-        return MATAMIKYA_PRODUCT_ALREADY_EXIST;
-    }
-    if(registerResult==AS_SUCCESS)
-    {
-        ASElement found = getWarehouseProduct(matamikya, id);
-    AmountSetResult amount_result = asChangeAmount(matamikya->warehouse, found , amount);
-    if(amount_result == AS_INSUFFICIENT_AMOUNT) {
-        destroyProductData(new_data);
-        asDelete(matamikya->warehouse, found) ;
-        return MATAMIKYA_INSUFFICIENT_AMOUNT;
-    }
-
-    if(amount_result == AS_NULL_ARGUMENT) {
-        destroyProductData(new_data);
-        asDelete(matamikya->warehouse, found) ;
-        return MATAMIKYA_OUT_OF_MEMORY;
-    }
-    assert(amount_result==AS_ITEM_DOES_NOT_EXIST);
-    }
-
-    destroyProductData(new_data);
-    return MATAMIKYA_SUCCESS;
-}
-MatamikyaResult mtmChangeProductAmount(Matamikya matamikya, const unsigned int id, const double amount)
-{
-   if ( matamikya==NULL || matamikya->warehouse) return MATAMIKYA_NULL_ARGUMENT;
-    ASElement found = getWarehouseProduct(matamikya,id);
-    if (found == NULL) return MATAMIKYA_PRODUCT_NOT_EXIST;
-    MatamikyaAmountType product_type = (*(ProductData)found).amount_type;
-    if(!checkAmountType(amount,product_type)) return MATAMIKYA_INVALID_AMOUNT;
-   AmountSetResult changing_result = asChangeAmount(matamikya->warehouse,found,amount);
-   if(changing_result==AS_NULL_ARGUMENT) return MATAMIKYA_NULL_ARGUMENT;
-   if(changing_result==AS_ITEM_DOES_NOT_EXIST) return MATAMIKYA_PRODUCT_NOT_EXIST;
-   if(changing_result==AS_INSUFFICIENT_AMOUNT) return MATAMIKYA_INSUFFICIENT_AMOUNT;
-   return MATAMIKYA_SUCCESS;
-}
-
-MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id)
-{
-    if(matamikya==NULL  || matamikya->warehouse==NULL) return MATAMIKYA_NULL_ARGUMENT;
-    ASElement found = getWarehouseProduct(matamikya,id);
-    if (found == NULL ) return MATAMIKYA_PRODUCT_NOT_EXIST;
-    AmountSetResult clear_result = asDelete(matamikya->warehouse,found);
-    if(clear_result == AS_NULL_ARGUMENT ) return MATAMIKYA_NULL_ARGUMENT;
-    if(clear_result == AS_ITEM_DOES_NOT_EXIST ) return MATAMIKYA_PRODUCT_NOT_EXIST;
-    return MATAMIKYA_SUCCESS;
-}
-int main()
-{
-    return 0;
-}

@@ -14,10 +14,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87d280fd-1ae7-4c3c-a6da-f3074f2a693d" name="Changes" comment="יעחחינח">
+    <list default="true" id="87d280fd-1ae7-4c3c-a6da-f3074f2a693d" name="Changes" comment="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MtmProductData.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MtmProductData.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Orders.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Orders.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/matamikya.c" beforeDir="false" afterPath="$PROJECT_DIR$/matamikya.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matamikya2.c" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +99,7 @@
       <workItem from="1639140901425" duration="4856000" />
       <workItem from="1639149514335" duration="14431000" />
       <workItem from="1639214915425" duration="13522000" />
-      <workItem from="1639233002263" duration="3462000" />
+      <workItem from="1639233002263" duration="8319000" />
     </task>
     <task id="LOCAL‎00001" summary="יעחחינח">
       <created>1638892906100</created>
@@ -148,7 +155,13 @@
       <option name="presentableId" value="LOCAL‎00009" />
       <updated>1639233234209</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎00010" summary="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר">
+      <created>1639237225628</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1639237225629</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +181,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="יעחחינח" />
-    <option name="LAST_COMMIT_MESSAGE" value="יעחחינח" />
+    <MESSAGE value="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר" />
+    <option name="LAST_COMMIT_MESSAGE" value="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -177,11 +191,6 @@
           <url>file://$PROJECT_DIR$/amount_set_str.c</url>
           <line>203</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Orders.c</url>
-          <line>121</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
