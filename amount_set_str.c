@@ -270,7 +270,7 @@ AmountSetResult asRegister(AmountSet set, const char* element) {
     if (header == NULL || (strcmp(header->element, element) > 0)) {
         List new_list_header = listCreate();
         if(new_list_header==NULL) return AS_OUT_OF_MEMORY;
-       char* element_copy= strtCopy(element);
+       char* element_copy= strCopy(element);
        if(element_copy==NULL)
        {
            free(new_list_header);
@@ -285,7 +285,7 @@ AmountSetResult asRegister(AmountSet set, const char* element) {
 
     List new_element = listCreate();
     if(new_element==NULL) return AS_OUT_OF_MEMORY;
-    char* element_copy= strtCopy(element);
+    char* element_copy= strCopy(element);
     {
         if(element_copy==NULL)
         {

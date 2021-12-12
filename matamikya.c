@@ -266,16 +266,25 @@ MatamikyaResult mtmChangeProductAmount(Matamikya matamikya, const unsigned int i
    return MATAMIKYA_SUCCESS;
 }
 
-MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id)
-{
-    if(matamikya==NULL  || matamikya->warehouse==NULL) return MATAMIKYA_NULL_ARGUMENT;
-    ASElement found = getWarehouseProduct(matamikya,id);
-    if (found == NULL ) return MATAMIKYA_PRODUCT_NOT_EXIST;
-    AmountSetResult clear_result = asDelete(matamikya->warehouse,found);
-    if(clear_result == AS_NULL_ARGUMENT ) return MATAMIKYA_NULL_ARGUMENT;
-    if(clear_result == AS_ITEM_DOES_NOT_EXIST ) return MATAMIKYA_PRODUCT_NOT_EXIST;
+MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id) {
+    if (matamikya == NULL || matamikya->warehouse == NULL) return MATAMIKYA_NULL_ARGUMENT;
+    ASElement found = getWarehouseProduct(matamikya, id);
+    if (found == NULL) return MATAMIKYA_PRODUCT_NOT_EXIST;
+    AmountSetResult clear_result = asDelete(matamikya->warehouse, found);
+    if (clear_result == AS_NULL_ARGUMENT) return MATAMIKYA_NULL_ARGUMENT;
+    if (clear_result == AS_ITEM_DOES_NOT_EXIST) return MATAMIKYA_PRODUCT_NOT_EXIST;
     return MATAMIKYA_SUCCESS;
 }
+
+/*
+ The struct define as Set orders ; ( in matmikya )
+ order now have SetElement ( void* ) orders_list that wil point to OrderElementData and we have to make compare free and copy function working with OrdersElement Data struct .
+ Typedef struct OrderElementData { unsigned int order_id ; AmountSet ElementData ) ;
+ now we have all the structs we need .
+ to create a ElementData will use the functions we built for the warehouse ( ASElement points to ProductData and we not need to declare it same as we did in warehouse ) ;
+ */
+
+/*
 typedef struct OrderElementData_t {
     unsigned int order_id;
     ProductData Element_Data;
@@ -289,35 +298,40 @@ typedef struct Orders_t{
     SetElement CopySetElement;
 } *Orders;
 
+
+
 unsigned int getOrderId(Orders orders);
 
-unsigned int mtmCreateNewOrder(Matamikya matamikya){
-    if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
+unsigned int mtmCreateNewOrder(Matamikya matamikya) {
+    if (matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
     // No orders at all
-    if(matamikya->orders == NULL){
+    if (matamikya->orders == NULL) {
         Orders orders = malloc(sizeof(*orders));
-        if(orders == NULL) MATAMIKYA_OUT_OF_MEMORY;
-        orders->orderSet = setCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
-        if(orders->orderSet == NULL)return MATAMIKYA_OUT_OF_MEMORY;
+        if (orders == NULL) MATAMIKYA_OUT_OF_MEMORY;
+        orders->orderSet = setCreate(copyProductDataToASElement, freeProductDataToASElement,
+                                     compareProductDataToASElement);
+        if (orders->orderSet == NULL)return MATAMIKYA_OUT_OF_MEMORY;
         Set orderset = orders->orderSet;
-        AmountSet first_order = asCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
-        if(first_order == NULL){
+        AmountSet first_order = asCreate(copyProductDataToASElement, freeProductDataToASElement,
+                                         compareProductDataToASElement);
+        if (first_order == NULL) {
             free(orders->orderSet);
             return MATAMIKYA_OUT_OF_MEMORY;
         }
         OrderElementData order_data = malloc(sizeof(*order_data));
-        if(order_data == NULL){
+        if (order_data == NULL) {
             free(orders->orderSet);
             free(first_order);
             return MATAMIKYA_OUT_OF_MEMORY;
         }
         order_data->order_id = getOrderId(orders);
         order_data->Element_Data = NULL;
-        asRegister(first_order,(ASElement)order_data);
-        setAdd(orders->orderSet,(SetElement)first_order);
+        asRegister(first_order, (ASElement) order_data);
+        setAdd(orders->orderSet, (SetElement) first_order);
         return order_data->order_id;
         // Look for free func to add here
     }
     // If the order has orders already
-
+    return 0;
 }
+*/

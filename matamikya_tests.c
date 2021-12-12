@@ -1,5 +1,5 @@
 #include "matamikya_tests.h"
-#include "../matamikya.h"
+#include "matamikya.h"
 #include "test_utilities.h"
 #include <assert.h>
 #include <stdlib.h>

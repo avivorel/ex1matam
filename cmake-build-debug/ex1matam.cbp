@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"/>
+				<Option working_dir="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"/>
+				<Option working_dir="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"/>
+				<Option working_dir="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ex1matam">
-				<Option output="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/ex1matam" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"/>
+				<Option output="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/ex1matam" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex1matam"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex1matam"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ex1matam/fast">
-				<Option output="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/ex1matam" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"/>
+				<Option output="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/ex1matam" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,26 +71,35 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex1matam/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/סמסטר\ ג\ מדעי\ המחשב/מתמ/עבודות\ /Ex1_matam/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex1matam/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/amount_set.h">
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya.c">
 			<Option target="ex1matam"/>
 		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c">
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya.h">
 			<Option target="ex1matam"/>
 		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.h">
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya_main.c">
 			<Option target="ex1matam"/>
 		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/set.h">
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya_print.c">
 			<Option target="ex1matam"/>
 		</Unit>
-		<Unit filename="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/CMakeLists.txt">
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya_print.h">
+			<Option target="ex1matam"/>
+		</Unit>
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya_tests.c">
+			<Option target="ex1matam"/>
+		</Unit>
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/matamikya_tests.h">
+			<Option target="ex1matam"/>
+		</Unit>
+		<Unit filename="/Users/ori/Documents/MtmProjects/ex1matam/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

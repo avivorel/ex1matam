@@ -53,10 +53,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam"
+CMAKE_SOURCE_DIR = /Users/ori/Documents/MtmProjects/ex1matam
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ex1matam.dir/depend.make
@@ -68,28 +68,73 @@ include CMakeFiles/ex1matam.dir/flags.make
 
 CMakeFiles/ex1matam.dir/matamikya.c.o: CMakeFiles/ex1matam.dir/flags.make
 CMakeFiles/ex1matam.dir/matamikya.c.o: ../matamikya.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1matam.dir/matamikya.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikya.c.o -c "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1matam.dir/matamikya.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikya.c.o -c /Users/ori/Documents/MtmProjects/ex1matam/matamikya.c
 
 CMakeFiles/ex1matam.dir/matamikya.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1matam.dir/matamikya.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c" > CMakeFiles/ex1matam.dir/matamikya.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ori/Documents/MtmProjects/ex1matam/matamikya.c > CMakeFiles/ex1matam.dir/matamikya.c.i
 
 CMakeFiles/ex1matam.dir/matamikya.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1matam.dir/matamikya.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/matamikya.c" -o CMakeFiles/ex1matam.dir/matamikya.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ori/Documents/MtmProjects/ex1matam/matamikya.c -o CMakeFiles/ex1matam.dir/matamikya.c.s
+
+CMakeFiles/ex1matam.dir/matamikya_main.c.o: CMakeFiles/ex1matam.dir/flags.make
+CMakeFiles/ex1matam.dir/matamikya_main.c.o: ../matamikya_main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ex1matam.dir/matamikya_main.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikya_main.c.o -c /Users/ori/Documents/MtmProjects/ex1matam/matamikya_main.c
+
+CMakeFiles/ex1matam.dir/matamikya_main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1matam.dir/matamikya_main.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ori/Documents/MtmProjects/ex1matam/matamikya_main.c > CMakeFiles/ex1matam.dir/matamikya_main.c.i
+
+CMakeFiles/ex1matam.dir/matamikya_main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1matam.dir/matamikya_main.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ori/Documents/MtmProjects/ex1matam/matamikya_main.c -o CMakeFiles/ex1matam.dir/matamikya_main.c.s
+
+CMakeFiles/ex1matam.dir/matamikya_tests.c.o: CMakeFiles/ex1matam.dir/flags.make
+CMakeFiles/ex1matam.dir/matamikya_tests.c.o: ../matamikya_tests.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ex1matam.dir/matamikya_tests.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikya_tests.c.o -c /Users/ori/Documents/MtmProjects/ex1matam/matamikya_tests.c
+
+CMakeFiles/ex1matam.dir/matamikya_tests.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1matam.dir/matamikya_tests.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ori/Documents/MtmProjects/ex1matam/matamikya_tests.c > CMakeFiles/ex1matam.dir/matamikya_tests.c.i
+
+CMakeFiles/ex1matam.dir/matamikya_tests.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1matam.dir/matamikya_tests.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ori/Documents/MtmProjects/ex1matam/matamikya_tests.c -o CMakeFiles/ex1matam.dir/matamikya_tests.c.s
+
+CMakeFiles/ex1matam.dir/matamikya_print.c.o: CMakeFiles/ex1matam.dir/flags.make
+CMakeFiles/ex1matam.dir/matamikya_print.c.o: ../matamikya_print.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ex1matam.dir/matamikya_print.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1matam.dir/matamikya_print.c.o -c /Users/ori/Documents/MtmProjects/ex1matam/matamikya_print.c
+
+CMakeFiles/ex1matam.dir/matamikya_print.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1matam.dir/matamikya_print.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ori/Documents/MtmProjects/ex1matam/matamikya_print.c > CMakeFiles/ex1matam.dir/matamikya_print.c.i
+
+CMakeFiles/ex1matam.dir/matamikya_print.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1matam.dir/matamikya_print.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ori/Documents/MtmProjects/ex1matam/matamikya_print.c -o CMakeFiles/ex1matam.dir/matamikya_print.c.s
 
 # Object files for target ex1matam
 ex1matam_OBJECTS = \
-"CMakeFiles/ex1matam.dir/matamikya.c.o"
+"CMakeFiles/ex1matam.dir/matamikya.c.o" \
+"CMakeFiles/ex1matam.dir/matamikya_main.c.o" \
+"CMakeFiles/ex1matam.dir/matamikya_tests.c.o" \
+"CMakeFiles/ex1matam.dir/matamikya_print.c.o"
 
 # External object files for target ex1matam
 ex1matam_EXTERNAL_OBJECTS =
 
 ex1matam: CMakeFiles/ex1matam.dir/matamikya.c.o
+ex1matam: CMakeFiles/ex1matam.dir/matamikya_main.c.o
+ex1matam: CMakeFiles/ex1matam.dir/matamikya_tests.c.o
+ex1matam: CMakeFiles/ex1matam.dir/matamikya_print.c.o
 ex1matam: CMakeFiles/ex1matam.dir/build.make
 ex1matam: CMakeFiles/ex1matam.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ex1matam"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable ex1matam"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ex1matam.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -101,6 +146,6 @@ CMakeFiles/ex1matam.dir/clean:
 .PHONY : CMakeFiles/ex1matam.dir/clean
 
 CMakeFiles/ex1matam.dir/depend:
-	cd "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles/ex1matam.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ori/Documents/MtmProjects/ex1matam /Users/ori/Documents/MtmProjects/ex1matam /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles/ex1matam.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ex1matam.dir/depend
 

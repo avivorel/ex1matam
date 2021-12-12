@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam"
+CMAKE_SOURCE_DIR = /Users/ori/Documents/MtmProjects/ex1matam
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ori/Documents/סמסטר ג מדעי המחשב/מתמ/עבודות /Ex1_matam/ex1matam/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ori/Documents/MtmProjects/ex1matam/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -153,6 +153,78 @@ matamikya.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya.c.s
 .PHONY : matamikya.c.s
 
+matamikya_main.o: matamikya_main.c.o
+.PHONY : matamikya_main.o
+
+# target to build an object file
+matamikya_main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_main.c.o
+.PHONY : matamikya_main.c.o
+
+matamikya_main.i: matamikya_main.c.i
+.PHONY : matamikya_main.i
+
+# target to preprocess a source file
+matamikya_main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_main.c.i
+.PHONY : matamikya_main.c.i
+
+matamikya_main.s: matamikya_main.c.s
+.PHONY : matamikya_main.s
+
+# target to generate assembly for a file
+matamikya_main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_main.c.s
+.PHONY : matamikya_main.c.s
+
+matamikya_print.o: matamikya_print.c.o
+.PHONY : matamikya_print.o
+
+# target to build an object file
+matamikya_print.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_print.c.o
+.PHONY : matamikya_print.c.o
+
+matamikya_print.i: matamikya_print.c.i
+.PHONY : matamikya_print.i
+
+# target to preprocess a source file
+matamikya_print.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_print.c.i
+.PHONY : matamikya_print.c.i
+
+matamikya_print.s: matamikya_print.c.s
+.PHONY : matamikya_print.s
+
+# target to generate assembly for a file
+matamikya_print.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_print.c.s
+.PHONY : matamikya_print.c.s
+
+matamikya_tests.o: matamikya_tests.c.o
+.PHONY : matamikya_tests.o
+
+# target to build an object file
+matamikya_tests.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_tests.c.o
+.PHONY : matamikya_tests.c.o
+
+matamikya_tests.i: matamikya_tests.c.i
+.PHONY : matamikya_tests.i
+
+# target to preprocess a source file
+matamikya_tests.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_tests.c.i
+.PHONY : matamikya_tests.c.i
+
+matamikya_tests.s: matamikya_tests.c.s
+.PHONY : matamikya_tests.s
+
+# target to generate assembly for a file
+matamikya_tests.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1matam.dir/build.make CMakeFiles/ex1matam.dir/matamikya_tests.c.s
+.PHONY : matamikya_tests.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +237,15 @@ help:
 	@echo "... matamikya.o"
 	@echo "... matamikya.i"
 	@echo "... matamikya.s"
+	@echo "... matamikya_main.o"
+	@echo "... matamikya_main.i"
+	@echo "... matamikya_main.s"
+	@echo "... matamikya_print.o"
+	@echo "... matamikya_print.i"
+	@echo "... matamikya_print.s"
+	@echo "... matamikya_tests.o"
+	@echo "... matamikya_tests.i"
+	@echo "... matamikya_tests.s"
 .PHONY : help
 
 

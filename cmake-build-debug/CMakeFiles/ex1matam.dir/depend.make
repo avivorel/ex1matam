@@ -7,3 +7,15 @@ CMakeFiles/ex1matam.dir/matamikya.c.o: \
  ../matamikya.h \
  ../matamikya_print.h \
  ../set.h
+CMakeFiles/ex1matam.dir/matamikya_main.c.o: \
+ ../matamikya_main.c \
+ ../matamikya_tests.h \
+ ../test_utilities.h
+CMakeFiles/ex1matam.dir/matamikya_print.c.o: \
+ ../matamikya_print.c \
+ ../matamikya_print.h
+CMakeFiles/ex1matam.dir/matamikya_tests.c.o: \
+ ../matamikya.h \
+ ../matamikya_tests.c \
+ ../matamikya_tests.h \
+ ../test_utilities.h
