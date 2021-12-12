@@ -31,12 +31,6 @@ typedef struct ProductData_t {
 }
 *ProductData;
 
-typedef struct OrderProductData_t {
-    unsigned int order_id;
-    AmountSet order_data;
-}
-*OrderProductData;
-
 /* Static function used in matamikya */
 
 /* strCopy
@@ -282,49 +276,48 @@ MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id)
     if(clear_result == AS_ITEM_DOES_NOT_EXIST ) return MATAMIKYA_PRODUCT_NOT_EXIST;
     return MATAMIKYA_SUCCESS;
 }
-
-/* Code Before we make the Product Data ADT
- *
- * int compareProductDataToASElement(ASElement element1 , ASElement element2)
-{
-    if (element1==NULL && element2 != NULL ) return -1;
-    else if( (element1!=NULL && element2 == NULL ) ) return 1;
-    else if ( element1 == NULL && element2 == NULL ) return 0 ;
-    unsigned int Id1=(*(ProductData)element1).Id;
-    unsigned int Id2=(*(ProductData)element2).Id;
-    if(Id1>Id2)  return POSITIVE;
-    if(Id1<Id2)  return NEGATIVE;
-    return EQUAL ;
-    }
-
-  ASElement copyProductData (ASElement element)
-{
-    if(element == NULL ) return NULL;
-    ProductData new_element = malloc(sizeof(*new_element);
-    if(new_element==NULL) return NULL;
-    new_element -> Id = (*(ProductData)element).Id;
-    new_element->Name = strCopy((*(ProductData)element).Name);
-    if(new_element->Name==NULL) {
-        free(new_element);
-        return NULL ;
-    }
-    new_element -> custom_data = ((*(ProductData)element).productCopyFunction((*(ProductData)element).custom_data));
-    if(new_element->custom_data==NULL) {
-        free(new_element->Name);
-        free(new_element);
-        return NULL;
-    }
-    new_element -> amount_type = (*(ProductData)element).amount_type;
-    new_element -> productCopyFunction = (*(ProductData)element).productCopyFunction;
-    new_element -> productFreeFunction = (*(ProductData)element).productFreeFunction;
-    new_element -> getProductPriceFunc = (*(ProductData)element).getProductPriceFunc;
-    return new_element ;
+typedef struct OrderElementData_t {
+    unsigned int order_id;
+    ProductData Element_Data;
 }
-void freeProductDataToASElement (ASElement element) {
-    if (element == NULL) return;
-    (*(ProductData) element).productFreeFunction((*(ProductData) element).custom_data);
-    free((*(ProductData) element).Name);
-    free(element);
-}
-*/
+*OrderElementData;
 
+typedef struct Orders_t{
+    Set orderSet;
+    SetElement orders_list;
+    AmountSet current_order; // idk why, but you wrote it in what you sent me
+    SetElement CopySetElement;
+} *Orders;
+
+unsigned int getOrderId(Orders orders);
+
+unsigned int mtmCreateNewOrder(Matamikya matamikya){
+    if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
+    // No orders at all
+    if(matamikya->orders == NULL){
+        Orders orders = malloc(sizeof(*orders));
+        if(orders == NULL) MATAMIKYA_OUT_OF_MEMORY;
+        orders->orderSet = setCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
+        if(orders->orderSet == NULL)return MATAMIKYA_OUT_OF_MEMORY;
+        Set orderset = orders->orderSet;
+        AmountSet first_order = asCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
+        if(first_order == NULL){
+            free(orders->orderSet);
+            return MATAMIKYA_OUT_OF_MEMORY;
+        }
+        OrderElementData order_data = malloc(sizeof(*order_data));
+        if(order_data == NULL){
+            free(orders->orderSet);
+            free(first_order);
+            return MATAMIKYA_OUT_OF_MEMORY;
+        }
+        order_data->order_id = getOrderId(orders);
+        order_data->Element_Data = NULL;
+        asRegister(first_order,(ASElement)order_data);
+        setAdd(orders->orderSet,(SetElement)first_order);
+        return order_data->order_id;
+        // Look for free func to add here
+    }
+    // If the order has orders already
+
+}
