@@ -283,55 +283,52 @@ MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id) {
  now we have all the structs we need .
  to create a ElementData will use the functions we built for the warehouse ( ASElement points to ProductData and we not need to declare it same as we did in warehouse ) ;
  */
-
-/*
-typedef struct OrderElementData_t {
+typedef struct OrderElementData_t{
     unsigned int order_id;
-    ProductData Element_Data;
-}
-*OrderElementData;
+    AmountSet ElementData;
+}*OrderElementData;
 
-typedef struct Orders_t{
-    Set orderSet;
-    SetElement orders_list;
-    AmountSet current_order; // idk why, but you wrote it in what you sent me
-    SetElement CopySetElement;
-} *Orders;
-
-
-
-unsigned int getOrderId(Orders orders);
-
-unsigned int mtmCreateNewOrder(Matamikya matamikya) {
-    if (matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
-    // No orders at all
-    if (matamikya->orders == NULL) {
-        Orders orders = malloc(sizeof(*orders));
-        if (orders == NULL) MATAMIKYA_OUT_OF_MEMORY;
-        orders->orderSet = setCreate(copyProductDataToASElement, freeProductDataToASElement,
-                                     compareProductDataToASElement);
-        if (orders->orderSet == NULL)return MATAMIKYA_OUT_OF_MEMORY;
-        Set orderset = orders->orderSet;
-        AmountSet first_order = asCreate(copyProductDataToASElement, freeProductDataToASElement,
-                                         compareProductDataToASElement);
-        if (first_order == NULL) {
-            free(orders->orderSet);
-            return MATAMIKYA_OUT_OF_MEMORY;
+OrderElementData  CopyOrderElementData(OrderElementData data){
+    if(data == NULL) return NULL;
+    AmountSet old_data = data->ElementData;
+    if(old_data == NULL) return NULL;
+    ASElement old_element = asGetFirst(old_data);
+    if(old_element == NULL) return NULL;
+    AmountSet new_data = asCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
+    if(new_data == NULL) return NULL;
+    while(old_element != NULL) {
+       int result = asRegister(new_data, old_element);
+        if(result != AS_SUCCESS){
+            asDestroy(new_data);
+            return NULL;
         }
-        OrderElementData order_data = malloc(sizeof(*order_data));
-        if (order_data == NULL) {
-            free(orders->orderSet);
-            free(first_order);
-            return MATAMIKYA_OUT_OF_MEMORY;
-        }
-        order_data->order_id = getOrderId(orders);
-        order_data->Element_Data = NULL;
-        asRegister(first_order, (ASElement) order_data);
-        setAdd(orders->orderSet, (SetElement) first_order);
-        return order_data->order_id;
-        // Look for free func to add here
+        old_element = asGetNext(old_data);
+        new_data = asGetNext(new_data);
     }
-    // If the order has orders already
-    return 0;
+    OrderElementData new_element_data = malloc(sizeof(*new_data));
+    if(new_element_data == NULL){
+        asDestroy(new_data);
+        return NULL;
+    }
+    new_element_data->ElementData = new_data;
+    new_element_data->order_id = data->order_id;
+    return new_element_data;
 }
-*/
+
+
+unsigned int GetOrderId(Set Orders){
+    if(Orders == NULL) return MATAMIKYA_NULL_ARGUMENT;
+    SetElement current_order = setGetFirst(Orders);
+    if(current_order == NULL) return 1;
+    unsigned int last_id = 0;
+    while(current_order != NULL){
+        SetElement next_order = setGetNext(current_order);
+        if(next_order == NULL){
+             last_id = ((OrderElementData)(current_order))->order_id;
+             break;
+        }
+        current_order = setGetNext(current_order);
+    }
+    return last_id+1;
+}
+unsigned int mtmCreateNewOrder(Matamikya matamikya);
