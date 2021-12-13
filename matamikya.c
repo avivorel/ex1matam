@@ -288,6 +288,8 @@ typedef struct OrderElementData_t{
     AmountSet ElementData;
 }*OrderElementData;
 
+//Ori Please check the Iteration and asgetnext here.
+
 OrderElementData  CopyOrderElementData(OrderElementData data){
     if(data == NULL) return NULL;
     AmountSet old_data = data->ElementData;
@@ -303,7 +305,6 @@ OrderElementData  CopyOrderElementData(OrderElementData data){
             return NULL;
         }
         old_element = asGetNext(old_data);
-        new_data = asGetNext(new_data);
     }
     OrderElementData new_element_data = malloc(sizeof(*new_data));
     if(new_element_data == NULL){
@@ -315,6 +316,25 @@ OrderElementData  CopyOrderElementData(OrderElementData data){
     return new_element_data;
 }
 
+void FreeOrderElementData(OrderElementData data){
+    if(data == NULL) return NULL;
+    if(data->ElementData == NULL){
+        free(data);
+        return;
+    }
+    asDestroy(data->ElementData);
+    free(data);
+    return;
+}
+// Two different orders with the same items are possible, just not the same pointer.
+// It can't have the same ID though.
+// -1 is NULL sent , 0  means Equal and 1 means not equal.
+int CompareOrderElementData(OrderElementData data1, OrderElementData data2){
+    if(data1 == NULL || data2 == NULL) return -1;
+    if(data1->ElementData == data2->ElementData) return 0;
+    if(data1->order_id == data2->order_id) return 0;
+    return 1;
+}
 
 unsigned int GetOrderId(Set Orders){
     if(Orders == NULL) return MATAMIKYA_NULL_ARGUMENT;
