@@ -14,8 +14,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87d280fd-1ae7-4c3c-a6da-f3074f2a693d" name="Changes" comment="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="87d280fd-1ae7-4c3c-a6da-f3074f2a693d" name="Changes" comment="fixed some things in syntax and funcs &#10;did ordercreate and &#10;the matamikya destroy and build .">
       <change beforePath="$PROJECT_DIR$/matamikya.c" beforeDir="false" afterPath="$PROJECT_DIR$/matamikya.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +91,7 @@
       <workItem from="1639149514335" duration="14431000" />
       <workItem from="1639214915425" duration="13522000" />
       <workItem from="1639233002263" duration="8319000" />
-      <workItem from="1639330472630" duration="14837000" />
+      <workItem from="1639330472630" duration="15145000" />
     </task>
     <task id="LOCAL‎00001" summary="יעחחינח">
       <created>1638892906100</created>
@@ -160,7 +159,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1639335790612</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="fixed some things in syntax and funcs &#10;did ordercreate and &#10;the matamikya destroy and build .">
+      <created>1639427461976</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1639427461976</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +186,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="יעחחינח" />
     <MESSAGE value="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר" />
-    <option name="LAST_COMMIT_MESSAGE" value="תקנתי רפורמוט כתיבה של הקוד וסדרתי סינטקטית את הקוד .&#10;השארתי מימוש ראשוני של מה שעשינו אתמול בהערה ולא מחקתי (לפני שעשינו מיני מבנה נתונים ל פרודקט דאטה ) &#10;הוספתי פונקציות של הוספת מוצר ( יש בשבילו פונקציות סטטיות שנמצאות בתחילת הקובץ - למצוא איבר במערך בדיקה ששם תקין וכמות שלו תקינה ) &#10;פונקציית שינוי כמות ופונקציית מחיקת מוצר" />
+    <MESSAGE value="fixed some things in syntax and funcs &#10;did ordercreate and &#10;the matamikya destroy and build ." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some things in syntax and funcs &#10;did ordercreate and &#10;the matamikya destroy and build ." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

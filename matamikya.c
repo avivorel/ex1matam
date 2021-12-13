@@ -377,7 +377,7 @@ Order  copyOrder(Order order){
  */
 
    static unsigned int getLastOrderId(Set orders) {
-        if (orders == NULL) return MATAMIKYA_NULL_ARGUMENT;
+        if (orders == NULL) return 0;
         SetElement current_order = setGetFirst(orders);
         if (current_order == NULL) return 1;
         unsigned int last_id = 0;
