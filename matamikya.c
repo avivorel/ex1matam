@@ -12,6 +12,7 @@
 #define INTEGER_LIMIT 0.001
 #define UPPER_HALF_INTEGER_LIMIT 0.501
 #define LOWER_HALF_INTEGER_LIMIT 0.499
+#define NO_ORDERS -1
 
 
 
@@ -30,6 +31,12 @@ typedef struct ProductData_t {
     MtmGetProductPrice getProductPriceFunc;
 }
 *ProductData;
+
+typedef struct Order_t{
+    unsigned int order_id;
+    AmountSet order_data;
+}*Order;
+
 
 /* Static function used in matamikya */
 
@@ -168,7 +175,43 @@ if(element1==NULL)
 
 /*End Of Functions for ADT Product Data */
 
-/* Function for using the AmountSet ADT - ASElement points to ProductData */
+/* Function for Adt Order */
+Order  copyOrder(Order order)
+{
+    if (order == NULL) return NULL;
+    Order new_order = malloc(sizeof(*new_order));
+    if (new_order == NULL) return NULL;
+    new_order->order_data = asCopy(order->order_data);
+    if (new_order->order_data == NULL) {
+        free(order);
+        return NULL;
+    }
+    new_order->order_id = order->order_id;
+    return new_order;
+}
+
+void freeOrder(Order order) {
+    if (order == NULL) return;
+    if (order->order_data == NULL) {
+        free(order);
+        return;
+    }
+    asDestroy(order->order_data);
+    free(order);
+}
+
+int compareOrders(Order order1, Order order2) {
+    assert(order1 != NULL && order2 != NULL);
+    unsigned int difference = order1->order_id - order2->order_id;
+    if (difference > 0) return POSITIVE;
+    if (difference < 0) return NEGATIVE;
+    return EQUAL;
+}
+
+/*End For Order ADT Function */
+
+
+/* Function for using the AmountSet ADT - ASElement points to ProductData ADT */
 
 ASElement copyProductDataToASElement (ASElement element)
 {
@@ -190,6 +233,25 @@ return result;
 
 /* End of Function for using the AmountSet ADT - ASElement points to ProductData */
 
+/* Function for using the Set Adt - SetElement points to Order ADT */
+
+SetElement setCopyForOrderElementData(SetElement element) {
+    if(element==NULL)return NULL;
+    SetElement copy_element = copyOrder((Order) element);
+    return copy_element;
+}
+void setDestroyForOrder (SetElement order)
+{
+    if(order==NULL) return ;
+    freeOrder(order);
+}
+int setOrdersCompare (SetElement order1 , SetElement order2 )
+{
+    int result = compareOrders((Order) order1, (Order) order2);
+    return result ;
+}
+
+/* End of function required to create a set */
 
 Matamikya matamikyaCreate()
 {
@@ -197,22 +259,27 @@ Matamikya matamikyaCreate()
     Matamikya matamikya = malloc(sizeof(*matamikya))   ;
     if(matamikya==NULL)
     return NULL ;
-    AmountSet warehouse = asCreate(copyProductDataToASElement, freeProductDataToASElement,compareProductDataToASElement);
-    if(warehouse == NULL ){
+    matamikya->warehouse = asCreate(copyProductDataToASElement, freeProductDataToASElement,compareProductDataToASElement);
+    if(matamikya->warehouse == NULL ){
         free(matamikya);
         return NULL ;
     }
-    matamikya->warehouse = warehouse;
-    // Set orders Creation
-    return matamikya;
+    matamikya->orders= setCreate(setCopyForOrderElementData,setDestroyForOrder,setOrdersCompare);
+    if( matamikya->orders)
+    {
+        asDestroy(matamikya->warehouse);
+        free(matamikya);
+        return NULL ;
+    }
+
+        return matamikya;
 }
 void matamikyaDestroy(Matamikya matamikya)
 {
-    asDestroy(matamikya->warehouse);
-    /* Destroy to orders */
+    if(matamikya->warehouse != NULL) asDestroy(matamikya->warehouse);
+    if(matamikya->orders != NULL) setDestroy(matamikya->orders);
     free(matamikya);
 }
-
 MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const char *name,
                               const double amount, const MatamikyaAmountType amountType,
                               const MtmProductData customData , MtmCopyData copyData,
@@ -276,23 +343,15 @@ MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id) {
     return MATAMIKYA_SUCCESS;
 }
 
+// All struct gone above ;
+// Copy Function changed - you dont have to iterat over the Amount set because you have as copy so its be with less bugs .
+//  Change Compare Function - check the  requirments  for compare function that the set need to get its like strcmp for the data not
+//just change if equal ;
+
 /*
- The struct define as Set orders ; ( in matmikya )
- order now have SetElement ( void* ) orders_list that wil point to OrderElementData and we have to make compare free and copy function working with OrdersElement Data struct .
- Typedef struct OrderElementData { unsigned int order_id ; AmountSet ElementData ) ;
- now we have all the structs we need .
- to create a ElementData will use the functions we built for the warehouse ( ASElement points to ProductData and we not need to declare it same as we did in warehouse ) ;
- */
-typedef struct OrderElementData_t{
-    unsigned int order_id;
-    AmountSet ElementData;
-}*OrderElementData;
-
-//Ori Please check the Iteration and asgetnext here.
-
-OrderElementData  CopyOrderElementData(OrderElementData data){
-    if(data == NULL) return NULL;
-    AmountSet old_data = data->ElementData;
+Order  copyOrder(Order order){
+    if(order == NULL) return NULL;
+    AmountSet old_data = order->order_data;
     if(old_data == NULL) return NULL;
     ASElement old_element = asGetFirst(old_data);
     if(old_element == NULL) return NULL;
@@ -306,49 +365,54 @@ OrderElementData  CopyOrderElementData(OrderElementData data){
         }
         old_element = asGetNext(old_data);
     }
-    OrderElementData new_element_data = malloc(sizeof(*new_data));
+    Order new_element_data = malloc(sizeof(*new_data));
     if(new_element_data == NULL){
         asDestroy(new_data);
         return NULL;
     }
-    new_element_data->ElementData = new_data;
-    new_element_data->order_id = data->order_id;
+    new_element_data->order_data = new_data;
+    new_element_data->order_id = order->order_id;
     return new_element_data;
 }
+ */
 
-void FreeOrderElementData(OrderElementData data){
-    if(data == NULL) return NULL;
-    if(data->ElementData == NULL){
-        free(data);
-        return;
-    }
-    asDestroy(data->ElementData);
-    free(data);
-    return;
-}
-// Two different orders with the same items are possible, just not the same pointer.
-// It can't have the same ID though.
-// -1 is NULL sent , 0  means Equal and 1 means not equal.
-int CompareOrderElementData(OrderElementData data1, OrderElementData data2){
-    if(data1 == NULL || data2 == NULL) return -1;
-    if(data1->ElementData == data2->ElementData) return 0;
-    if(data1->order_id == data2->order_id) return 0;
-    return 1;
-}
-
-unsigned int GetOrderId(Set Orders){
-    if(Orders == NULL) return MATAMIKYA_NULL_ARGUMENT;
-    SetElement current_order = setGetFirst(Orders);
-    if(current_order == NULL) return 1;
-    unsigned int last_id = 0;
-    while(current_order != NULL){
-        SetElement next_order = setGetNext(current_order);
-        if(next_order == NULL){
-             last_id = ((OrderElementData)(current_order))->order_id;
-             break;
+   static unsigned int getLastOrderId(Set orders) {
+        if (orders == NULL) return MATAMIKYA_NULL_ARGUMENT;
+        SetElement current_order = setGetFirst(orders);
+        if (current_order == NULL) return 1;
+        unsigned int last_id = 0;
+        while (current_order != NULL) {
+            SetElement next_order = setGetNext(current_order);
+            if (next_order == NULL) {
+                last_id = ((Order) (current_order))->order_id;
+                break;
+            }
+            current_order = setGetNext(current_order);
         }
-        current_order = setGetNext(current_order);
+        return last_id + 1;
     }
-    return last_id+1;
-}
-unsigned int mtmCreateNewOrder(Matamikya matamikya);
+   static SetElement findOrder (Set orders_list , unsigned int id)
+    {
+        SetElement current_element = setGetFirst(orders_list);
+        while( (*(Order)current_element).order_id != id && current_element!=NULL)
+        {
+          current_element= setGetNext(orders_list);
+        }
+        return current_element;
+    }
+    unsigned int mtmCreateNewOrder(Matamikya matamikya)
+    {
+        if(matamikya==NULL) return 0;
+        Set orders_list = matamikya->orders ; // Didnt check for NULL because of setAdd ;
+        Order new_order = malloc(sizeof(*new_order));
+        if(new_order==NULL) return 0;
+        unsigned int new_id = getLastOrderId(orders_list);
+        new_order->order_id=new_id;
+        new_order->order_data= asCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
+            if(setAdd(orders_list,(SetElement)new_order)==SET_SUCCESS) {
+                free(new_order);
+                return new_id;
+        }
+            free(new_order) ;
+            return 0 ;
+    }
