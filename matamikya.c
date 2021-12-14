@@ -77,15 +77,17 @@ static bool checkAmountType (const double amount ,const MatamikyaAmountType amou
         return false;
     return true ;
 }
-static ASElement getWarehouseProduct (Matamikya matamikya , const unsigned int Id)
+static ASElement getProductFromAmountSet (AmountSet Inventory , const unsigned int Id)
 {
-    ASElement found = (asGetFirst(matamikya->warehouse));
+    ASElement found = (asGetFirst(Inventory));
     while( (*(ProductData)found).Id != Id && found != NULL )
     {
-        asGetNext(found)  ;
+        found = asGetNext(Inventory)  ;
     }
     return found ;
 }
+
+/* End for static function for matamikya */
 
 /* Functions for ADT Product Data */
 
@@ -304,7 +306,7 @@ MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const 
     if(registerResult==AS_SUCCESS)
     {
         destroyProductData(new_data);
-        ASElement found = getWarehouseProduct(matamikya, id);
+        ASElement found = getProductFromAmountSet(matamikya->warehouse, id);
     AmountSetResult amount_result = asChangeAmount(matamikya->warehouse, found , amount);
     if(amount_result == AS_INSUFFICIENT_AMOUNT) {
         asDelete(matamikya->warehouse, found) ;
@@ -322,7 +324,7 @@ MatamikyaResult mtmNewProduct(Matamikya matamikya, const unsigned int id, const 
 MatamikyaResult mtmChangeProductAmount(Matamikya matamikya, const unsigned int id, const double amount)
 {
    if ( matamikya==NULL || matamikya->warehouse) return MATAMIKYA_NULL_ARGUMENT;
-    ASElement found = getWarehouseProduct(matamikya,id);
+    ASElement found = getProductFromAmountSet(matamikya->warehouse, id);
     if (found == NULL) return MATAMIKYA_PRODUCT_NOT_EXIST;
     MatamikyaAmountType product_type = (*(ProductData)found).amount_type;
     if(!checkAmountType(amount,product_type)) return MATAMIKYA_INVALID_AMOUNT;
@@ -335,7 +337,7 @@ MatamikyaResult mtmChangeProductAmount(Matamikya matamikya, const unsigned int i
 
 MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id) {
     if (matamikya == NULL || matamikya->warehouse == NULL) return MATAMIKYA_NULL_ARGUMENT;
-    ASElement found = getWarehouseProduct(matamikya, id);
+    ASElement found = getProductFromAmountSet(matamikya->warehouse, id);
     if (found == NULL) return MATAMIKYA_PRODUCT_NOT_EXIST;
     AmountSetResult clear_result = asDelete(matamikya->warehouse, found);
     if (clear_result == AS_NULL_ARGUMENT) return MATAMIKYA_NULL_ARGUMENT;
