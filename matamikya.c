@@ -391,25 +391,22 @@ MatamikyaResult mtmChangeProductAmountInOrder(Matamikya matamikya, const unsigne
 orderId, const unsigned int productId, const double amount){
     if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
     Set Orders = matamikya->orders;
+    AmountSet warehouse = matamikya->warehouse; // Check NULL?
     if(Orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    SetElement curr_order = setGetFirst(Orders);
-    while(curr_order != NULL){
-        if(((Order)(curr_order))->order_id == orderId){
-            Order found = (Order)curr_order;
-            AmountSet found_order_data = found->order_data;
-            ASElement curr_order_element = asGetFirst(found_order_data);
-            while(curr_order_element != NULL){
-                ProductData curr_order_data = (ProductData)curr_order_element;
-                if(curr_order_data->Id == productId){
-                    asChangeAmount(found_order_data,curr_order_element,amount);
-                    return MATAMIKYA_SUCCESS;
-                }
-                curr_order_element = asGetNext(found_order_data);
-            }
-        }
-        curr_order = setGetNext(Orders);
+    SetElement found_order = findOrder(Orders,orderId);
+    Order order_handle = (Order)found_order;
+    AmountSet order_set = order_handle->order_data;
+    ASElement product = getProductFromAmountSet(order_set,productId);
+    if(product == NULL){ // This is the adding part
+       ASElement product_to_add = getProductFromAmountSet(warehouse,productId);
+        int result = asRegister(order_set,product_to_add);
+        if(result == AS_OUT_OF_MEMORY)return MATAMIKYA_OUT_OF_MEMORY;
+        asChangeAmount(order_set,product_to_add,amount);
+        return MATAMIKYA_SUCCESS;
     }
-    return MATAMIKYA_ORDER_NOT_EXIST;
+    else{ // This is the changing part
+        ProductData order_product_data = (ProductData)product;
+    }
 }
 
 MatamikyaResult mtmShipOrder(Matamikya matamikya, const unsigned int
