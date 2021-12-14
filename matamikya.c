@@ -343,55 +343,22 @@ MatamikyaResult mtmClearProduct(Matamikya matamikya, const unsigned int id) {
     return MATAMIKYA_SUCCESS;
 }
 
-// All struct gone above ;
-// Copy Function changed - you dont have to iterat over the Amount set because you have as copy so its be with less bugs .
-//  Change Compare Function - check the  requirments  for compare function that the set need to get its like strcmp for the data not
-//just change if equal ;
-
-/*
-Order  copyOrder(Order order){
-    if(order == NULL) return NULL;
-    AmountSet old_data = order->order_data;
-    if(old_data == NULL) return NULL;
-    ASElement old_element = asGetFirst(old_data);
-    if(old_element == NULL) return NULL;
-    AmountSet new_data = asCreate(copyProductDataToASElement,freeProductDataToASElement,compareProductDataToASElement);
-    if(new_data == NULL) return NULL;
-    while(old_element != NULL) {
-       int result = asRegister(new_data, old_element);
-        if(result != AS_SUCCESS){
-            asDestroy(new_data);
-            return NULL;
+static unsigned int getLastOrderId(Set orders) {
+    if (orders == NULL) return 0;
+    SetElement current_order = setGetFirst(orders);
+    if (current_order == NULL) return 1;
+    unsigned int last_id = 0;
+    while (current_order != NULL) {
+        SetElement next_order = setGetNext(current_order);
+        if (next_order == NULL) {
+            last_id = ((Order) (current_order))->order_id;
+            break;
         }
-        old_element = asGetNext(old_data);
+        current_order = setGetNext(current_order);
     }
-    Order new_element_data = malloc(sizeof(*new_data));
-    if(new_element_data == NULL){
-        asDestroy(new_data);
-        return NULL;
-    }
-    new_element_data->order_data = new_data;
-    new_element_data->order_id = order->order_id;
-    return new_element_data;
+    return last_id + 1;
 }
- */
-
-   static unsigned int getLastOrderId(Set orders) {
-        if (orders == NULL) return 0;
-        SetElement current_order = setGetFirst(orders);
-        if (current_order == NULL) return 1;
-        unsigned int last_id = 0;
-        while (current_order != NULL) {
-            SetElement next_order = setGetNext(current_order);
-            if (next_order == NULL) {
-                last_id = ((Order) (current_order))->order_id;
-                break;
-            }
-            current_order = setGetNext(current_order);
-        }
-        return last_id + 1;
-    }
-   static SetElement findOrder (Set orders_list , unsigned int id)
+static SetElement findOrder (Set orders_list , unsigned int id)
     {
         SetElement current_element = setGetFirst(orders_list);
         while( (*(Order)current_element).order_id != id && current_element!=NULL)
@@ -400,7 +367,7 @@ Order  copyOrder(Order order){
         }
         return current_element;
     }
-    unsigned int mtmCreateNewOrder(Matamikya matamikya)
+unsigned int mtmCreateNewOrder(Matamikya matamikya)
     {
         if(matamikya==NULL) return 0;
         Set orders_list = matamikya->orders ; // Didnt check for NULL because of setAdd ;
@@ -416,3 +383,62 @@ Order  copyOrder(Order order){
             free(new_order) ;
             return 0 ;
     }
+// Check the error they said
+
+MatamikyaResult mtmChangeProductAmountInOrder(Matamikya matamikya, const unsigned int
+orderId, const unsigned int productId, const double amount){
+    Set Orders = matamikya->orders;
+    if(Orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    SetElement curr_order = setGetFirst(Orders);
+    while(curr_order != NULL){
+        if(((Order)(curr_order))->order_id == orderId){
+            Order found = (Order)curr_order;
+            AmountSet found_order_data = found->order_data;
+            ASElement curr_order_element = asGetFirst(found_order_data);
+            while(curr_order_element != NULL){
+                ProductData curr_order_data = (ProductData)curr_order_element;
+                if(curr_order_data->Id == productId){
+                    asChangeAmount(found_order_data,curr_order_element,amount);
+                    return MATAMIKYA_SUCCESS;
+                }
+                curr_order_element = asGetNext(found_order_data);
+            }
+        }
+        curr_order = setGetNext(Orders);
+    }
+    return MATAMIKYA_ORDER_NOT_EXIST;
+}
+
+MatamikyaResult mtmShipOrder(Matamikya matamikya, const unsigned int
+orderId){
+    if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
+    Set orders = matamikya->orders;
+    if(orders == NULL) MATAMIKYA_ORDER_NOT_EXIST;
+    SetElement found_order = findOrder(orders,orderId);
+    if(found_order == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    Order found_order_curr_order = (Order)found_order;
+    AmountSet found_order_data = found_order_curr_order->order_data;
+    if(found_order_data == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    ASElement  curr_order_element = asGetFirst(found_order_data);
+    ProductData curr_order_product = (ProductData)(curr_order_element);
+    unsigned int id = curr_order_product->Id;
+    while(curr_order_product != NULL) {
+        AmountSet inventory_iteration = matamikya->warehouse;
+        ASElement curr_inventory_item = asGetFirst(inventory_iteration);
+        while(curr_inventory_item != NULL){
+            ProductData curr_inventory_item_data = (ProductData)curr_inventory_item;
+            if(curr_inventory_item_data->Id == id) break;
+            curr_inventory_item = asGetNext(inventory_iteration);
+        }
+        double inventory_amount = asGetAmount(inventory_iteration,curr_inventory_item,&inventory_amount);
+        double needed_amount = asGetAmount(found_order_data,curr_order_element,&needed_amount);
+        if(needed_amount <= inventory_amount){
+            asChangeAmount(inventory_iteration,curr_inventory_item,-needed_amount);
+        }
+        else{
+            return MATAMIKYA_INSUFFICIENT_AMOUNT;
+        }
+        curr_order_product = (ProductData)(asGetNext(found_order_data));
+    }
+    return MATAMIKYA_SUCCESS;
+}
