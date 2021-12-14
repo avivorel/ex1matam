@@ -419,30 +419,28 @@ orderId){
     if(orders == NULL) MATAMIKYA_ORDER_NOT_EXIST;
     SetElement found_order = findOrder(orders,orderId);
     if(found_order == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    Order found_order_curr_order = (Order)found_order;
-    AmountSet found_order_data = found_order_curr_order->order_data;
-    if(found_order_data == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    ASElement  curr_order_element = asGetFirst(found_order_data);
-    ProductData curr_order_product = (ProductData)(curr_order_element);
-    unsigned int id = curr_order_product->Id;
-    while(curr_order_product != NULL) {
-        AmountSet inventory_iteration = matamikya->warehouse;
-        ASElement curr_inventory_item = asGetFirst(inventory_iteration);
-        while(curr_inventory_item != NULL){
-            ProductData curr_inventory_item_data = (ProductData)curr_inventory_item;
-            if(curr_inventory_item_data->Id == id) break;
-            curr_inventory_item = asGetNext(inventory_iteration);
-        }
-        double inventory_amount = asGetAmount(inventory_iteration,curr_inventory_item,&inventory_amount);
-        double needed_amount = asGetAmount(found_order_data,curr_order_element,&needed_amount);
-        if(needed_amount <= inventory_amount){
-            asChangeAmount(inventory_iteration,curr_inventory_item,-needed_amount);
-        }
-        else{
+    AmountSet warehouse = matamikya->warehouse;
+    Order order = (Order)found_order;
+    AmountSet found_order_as = order->order_data;
+    ASElement curr_item = asGetFirst(found_order_as);
+    double amount_in_order = 0, amount_in_storage =0;
+    while(curr_item != NULL){
+        ASElement product_in_warehouse = getProductFromAmountSet(warehouse,((ProductData)curr_item)->Id);
+        asGetAmount(warehouse,product_in_warehouse,&amount_in_storage);
+        asGetAmount(found_order_as,curr_item,&amount_in_order);
+        if(amount_in_order > amount_in_storage)
             return MATAMIKYA_INSUFFICIENT_AMOUNT;
-        }
-        curr_order_product = (ProductData)(asGetNext(found_order_data));
+        curr_item = asGetNext(found_order_as);
     }
+    curr_item = asGetFirst(found_order_as);
+    while(curr_item != NULL){
+        ASElement product_in_warehouse = getProductFromAmountSet(warehouse,((ProductData)curr_item)->Id);
+        asGetAmount(warehouse,product_in_warehouse,&amount_in_storage);
+        asGetAmount(found_order_as,curr_item,&amount_in_order);
+        asChangeAmount(warehouse,product_in_warehouse,-amount_in_order);
+        curr_item = asGetNext(found_order_as);
+    }
+    asDelete(found_order_as,found_order);
     return MATAMIKYA_SUCCESS;
 }
 MatamikyaResult mtmCancelOrder(Matamikya matamikya, const unsigned int
