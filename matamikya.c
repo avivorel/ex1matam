@@ -387,6 +387,7 @@ unsigned int mtmCreateNewOrder(Matamikya matamikya)
 
 MatamikyaResult mtmChangeProductAmountInOrder(Matamikya matamikya, const unsigned int
 orderId, const unsigned int productId, const double amount){
+    if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
     Set Orders = matamikya->orders;
     if(Orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
     SetElement curr_order = setGetFirst(Orders);
@@ -441,4 +442,24 @@ orderId){
         curr_order_product = (ProductData)(asGetNext(found_order_data));
     }
     return MATAMIKYA_SUCCESS;
+}
+MatamikyaResult mtmCancelOrder(Matamikya matamikya, const unsigned int
+orderId){
+    if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
+    Set orders = matamikya->orders;
+    if(orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    SetElement order_element = setGetFirst(orders);
+    if(order_element == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    Order order_data = (Order)order_element;
+    while(order_data->order_id != orderId && order_element != NULL){
+        order_element = setGetNext(orders);
+        order_data = (Order)order_element;
+    }
+    if(order_data->order_id == orderId){
+        setDestroyForOrder(order_element);
+        return MATAMIKYA_SUCCESS;
+    }
+    else{
+        return MATAMIKYA_ORDER_NOT_EXIST;
+    }
 }
