@@ -16,6 +16,7 @@
   <component name="ChangeListManager">
     <list default="true" id="87d280fd-1ae7-4c3c-a6da-f3074f2a693d" name="Changes" comment="fixed some things in syntax and funcs &#10;did ordercreate and &#10;the matamikya destroy and build .">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matamikya.c" beforeDir="false" afterPath="$PROJECT_DIR$/matamikya.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +94,7 @@
       <workItem from="1639214915425" duration="13522000" />
       <workItem from="1639233002263" duration="8319000" />
       <workItem from="1639330472630" duration="15158000" />
-      <workItem from="1639498562850" duration="7179000" />
+      <workItem from="1639498562850" duration="1866000" />
     </task>
     <task id="LOCAL‎00001" summary="יעחחינח">
       <created>1638892906100</created>
@@ -173,13 +174,7 @@
       <option name="presentableId" value="LOCAL‎00013" />
       <updated>1639427722147</updated>
     </task>
-    <task id="LOCAL‎00014" summary="fixed some things in syntax and funcs &#10;did ordercreate and &#10;the matamikya destroy and build .">
-      <created>1639500609419</created>
-      <option name="number" value="LOCAL‎00014" />
-      <option name="presentableId" value="LOCAL‎00014" />
-      <updated>1639500609419</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

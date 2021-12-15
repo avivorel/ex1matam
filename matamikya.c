@@ -458,18 +458,9 @@ orderId){
     if(matamikya == NULL) return MATAMIKYA_NULL_ARGUMENT;
     Set orders = matamikya->orders;
     if(orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    SetElement order_element = setGetFirst(orders);
-    if(order_element == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    Order order_data = (Order)order_element;
-    while(order_data->order_id != orderId && order_element != NULL){
-        order_element = setGetNext(orders);
-        order_data = (Order)order_element;
-    }
-    if(order_data->order_id == orderId){
-        setDestroyForOrder(order_element);
-        return MATAMIKYA_SUCCESS;
-    }
-    else{
-        return MATAMIKYA_ORDER_NOT_EXIST;
-    }
+    SetElement found_order = findOrder(orders,orderId);
+    if(found_order == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    setDestroyForOrder(found_order);
+    setRemove(orders,found_order);
+    return MATAMIKYA_SUCCESS;
 }
