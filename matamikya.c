@@ -460,8 +460,45 @@ orderId){
     if(orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
     SetElement found_order = findOrder(orders,orderId);
     if(found_order == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    asDestroy(((Order)found_order)->order_data);
+    asDestroy((*(Order)found_order).order_data);
     SetResult result = setRemove(orders,found_order);
     if(result != SET_SUCCESS) return MATAMIKYA_ORDER_NOT_EXIST;
+    return MATAMIKYA_SUCCESS;
+}
+MatamikyaResult mtmPrintInventory(Matamikya matamikya, FILE *output)
+{
+   if(matamikya==NULL || output==NULL ) return MATAMIKYA_NULL_ARGUMENT;
+   fprintf(output,"Inventory Status:\n");
+   if(matamikya->warehouse==NULL) return MATAMIKYA_SUCCESS;
+   AmountSet warehouse = matamikya->warehouse ;
+    AS_FOREACH(ASElement , element , warehouse)
+    {
+        double amount=0;
+        AmountSetResult result = asGetAmount(warehouse,element,&amount);
+        assert(result==AS_SUCCESS);
+        mtmPrintProductDetails((*(ProductData)element).Name , (*(ProductData)element).Id,amount,(*(ProductData)element).getProductPriceFunc((*(ProductData)element).custom_data , amount ), output );
+    }
+return MATAMIKYA_SUCCESS;
+}
+MatamikyaResult mtmPrintOrder(Matamikya matamikya, const unsigned int orderId, FILE *output)
+{
+    if(matamikya == NULL || output==NULL) return NULL ;
+    if(matamikya->orders == NULL ) return MATAMIKYA_ORDER_NOT_EXIST;
+    Set orders = matamikya->orders ;
+    SetElement order_to_print = findOrder(orders, orderId );
+    if(order_to_print==NULL) return MATAMIKYA_ORDER_NOT_EXIST;
+    mtmPrintOrderHeading( (*(Order)order_to_print).order_id,output);
+    double total_price=0;
+    AmountSet order_data_to_print = (*(Order)order_to_print).order_data ;
+    AS_FOREACH(ASElement , element , order_data_to_print) {
+        double amount = 0;
+        AmountSetResult result = asGetAmount(order_data_to_print, element, &amount);
+        assert (result == AS_SUCCESS) ;
+            double price = (*(ProductData) element).getProductPriceFunc((*(ProductData) element).custom_data, amount);
+            mtmPrintProductDetails((*(ProductData) element).Name, (*(ProductData) element).Id, amount, price, output);
+            total_price += price*amount ;
+
+    }
+    mtmPrintOrderSummary(total_price,output);
     return MATAMIKYA_SUCCESS;
 }
