@@ -28,6 +28,7 @@ typedef struct ProductData_t {
     MtmCopyData productCopyFunction;
     MtmFreeData productFreeFunction;
     MtmGetProductPrice getProductPriceFunc;
+    double total_sold=0;
 }
 *ProductData;
 
@@ -446,6 +447,7 @@ orderId){
         ASElement product_in_warehouse = getProductFromAmountSet(warehouse,((ProductData)current_item)->Id);
         asGetAmount(warehouse,product_in_warehouse,&amount_in_storage);
         asGetAmount(found_order_data, current_item, &amount_in_order);
+        ((ProductData)(product_in_warehouse))->total_sold += amount_in_order * ((ProductData)product_in_warehouse)->getProductPriceFunc(((ProductData)product_in_warehouse),)
         asChangeAmount(warehouse,product_in_warehouse,-amount_in_order);
         current_item = asGetNext(found_order_data);
     }
@@ -463,7 +465,7 @@ orderId){
     asDestroy((*(Order)found_order).order_data);
     SetResult result = setRemove(orders,found_order);
     if(result != SET_SUCCESS) return MATAMIKYA_ORDER_NOT_EXIST;
-    return MATAMIKYA_SUCCESS;
+    return MATAMIKYA_SUCCESS;S
 }
 MatamikyaResult mtmPrintInventory(Matamikya matamikya, FILE *output)
 {
@@ -501,4 +503,9 @@ MatamikyaResult mtmPrintOrder(Matamikya matamikya, const unsigned int orderId, F
     }
     mtmPrintOrderSummary(total_price,output);
     return MATAMIKYA_SUCCESS;
+}
+
+MatamikyaResult mtmPrintBestSelling(Matamikya matamikya, FILE *output){
+    if(matamikya== NULL) return MATAMIKYA_NULL_ARGUMENT;
+    if(matamikya)
 }
