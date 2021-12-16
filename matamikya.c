@@ -28,7 +28,7 @@ typedef struct ProductData_t {
     MtmCopyData productCopyFunction;
     MtmFreeData productFreeFunction;
     MtmGetProductPrice getProductPriceFunc;
-    double total_sold=0;
+    double total_sold;
 }
 *ProductData;
 
@@ -121,6 +121,7 @@ ProductData createProductData (const unsigned int id,
     product->productCopyFunction = copyData;
     product->productFreeFunction = freeData;
     product-> getProductPriceFunc = prodPrice ;
+    product->total_sold=0;
     return product;
 }
 
@@ -142,6 +143,7 @@ ProductData copyProductData(ProductData element)
         return NULL;
     }
     new_element -> amount_type = element->amount_type;
+    new_element->total_sold = element -> total_sold;
     new_element -> productCopyFunction = element->productCopyFunction;
     new_element -> productFreeFunction = element->productFreeFunction;
     new_element -> getProductPriceFunc = element->getProductPriceFunc;
@@ -447,7 +449,7 @@ orderId){
         ASElement product_in_warehouse = getProductFromAmountSet(warehouse,((ProductData)current_item)->Id);
         asGetAmount(warehouse,product_in_warehouse,&amount_in_storage);
         asGetAmount(found_order_data, current_item, &amount_in_order);
-        ((ProductData)(product_in_warehouse))->total_sold += amount_in_order * ((ProductData)product_in_warehouse)->getProductPriceFunc(((ProductData)product_in_warehouse),)
+        ((ProductData)(product_in_warehouse))->total_sold += ((ProductData)product_in_warehouse)->getProductPriceFunc( (*(ProductData)product_in_warehouse).custom_data , amount_in_order);
         asChangeAmount(warehouse,product_in_warehouse,-amount_in_order);
         current_item = asGetNext(found_order_data);
     }
@@ -465,7 +467,7 @@ orderId){
     asDestroy((*(Order)found_order).order_data);
     SetResult result = setRemove(orders,found_order);
     if(result != SET_SUCCESS) return MATAMIKYA_ORDER_NOT_EXIST;
-    return MATAMIKYA_SUCCESS;S
+    return MATAMIKYA_SUCCESS;
 }
 MatamikyaResult mtmPrintInventory(Matamikya matamikya, FILE *output)
 {
@@ -484,28 +486,43 @@ return MATAMIKYA_SUCCESS;
 }
 MatamikyaResult mtmPrintOrder(Matamikya matamikya, const unsigned int orderId, FILE *output)
 {
-    if(matamikya == NULL || output==NULL) return NULL ;
+    if(matamikya == NULL || output==NULL) return MATAMIKYA_NULL_ARGUMENT ;
     if(matamikya->orders == NULL ) return MATAMIKYA_ORDER_NOT_EXIST;
     Set orders = matamikya->orders ;
     SetElement order_to_print = findOrder(orders, orderId );
     if(order_to_print==NULL) return MATAMIKYA_ORDER_NOT_EXIST;
     mtmPrintOrderHeading( (*(Order)order_to_print).order_id,output);
-    double total_price=0;
+    double total_order_price=0;
     AmountSet order_data_to_print = (*(Order)order_to_print).order_data ;
     AS_FOREACH(ASElement , element , order_data_to_print) {
         double amount = 0;
         AmountSetResult result = asGetAmount(order_data_to_print, element, &amount);
         assert (result == AS_SUCCESS) ;
-            double price = (*(ProductData) element).getProductPriceFunc((*(ProductData) element).custom_data, amount);
-            mtmPrintProductDetails((*(ProductData) element).Name, (*(ProductData) element).Id, amount, price, output);
-            total_price += price*amount ;
+            double total_product_price = (*(ProductData) element).getProductPriceFunc((*(ProductData) element).custom_data, amount);
+            mtmPrintProductDetails((*(ProductData) element).Name, (*(ProductData) element).Id, amount, total_product_price/amount , output);
+        total_order_price += total_product_price ;
 
     }
-    mtmPrintOrderSummary(total_price,output);
+    mtmPrintOrderSummary(total_order_price, output);
     return MATAMIKYA_SUCCESS;
 }
 
 MatamikyaResult mtmPrintBestSelling(Matamikya matamikya, FILE *output){
     if(matamikya== NULL) return MATAMIKYA_NULL_ARGUMENT;
-    if(matamikya)
-}
+    if(matamikya->warehouse==NULL) {
+        fprintf(output, "none\n");
+        return MATAMIKYA_SUCCESS;
+    }
+        ASElement best_selling = asGetFirst(matamikya->warehouse) ;
+        AS_FOREACH(ASElement , element , matamikya->warehouse)
+        {
+           if((*(ProductData)element).total_sold > (*(ProductData)best_selling).total_sold) best_selling=element ;
+        }
+        if((*(ProductData)best_selling).total_sold==0)
+        {
+            fprintf(output,"none\n");
+            return MATAMIKYA_SUCCESS;
+        }
+    mtmPrintIncomeLine((*(ProductData)best_selling).Name,(*(ProductData)best_selling).Id,(*(ProductData)best_selling).total_sold, output );
+    return MATAMIKYA_SUCCESS;
+    }
