@@ -460,7 +460,7 @@ orderId){
     if(orders == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
     SetElement found_order = findOrder(orders,orderId);
     if(found_order == NULL) return MATAMIKYA_ORDER_NOT_EXIST;
-    setDestroyForOrder(found_order);
+    asDestroy(((Order)found_order)->order_data);
     setRemove(orders,found_order);
     return MATAMIKYA_SUCCESS;
 }
